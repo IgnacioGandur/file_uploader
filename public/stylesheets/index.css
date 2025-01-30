@@ -1,0 +1,15 @@
+*,
+*::after,
+*::before {
+    border: 1px solid red;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100vh;
+    background-color: black;
+    color: white;
+}
