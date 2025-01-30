@@ -1,0 +1,27 @@
+{
+  "name": "file_uploader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IgnacioGandur/file_uploader.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/IgnacioGandur/file_uploader/issues"
+  },
+  "homepage": "https://github.com/IgnacioGandur/file_uploader#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "prisma": "^6.3.0"
+  }
+}
