@@ -5,6 +5,7 @@ import express from "express";
 import path from "path";
 import router from "./routes/router.js";
 import session from "express-session";
+import passport from "passport";
 import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 import { PrismaClient } from "@prisma/client";
 
@@ -33,6 +34,10 @@ app.use(
         }),
     }),
 );
+
+app.use(passport.session());
+
+import("./middleware/passport/passport.js");
 
 app.use(router);
 

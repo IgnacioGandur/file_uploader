@@ -10,6 +10,12 @@
         <link rel="stylesheet" href="/stylesheets/index.css">
     </head>
     <body>
+        <%- include("../partials/navbar.ejs") %>
         <h1>File Uploader</h1>
+        <% if(locals.user) { %>
+            <p>
+                user logged
+            </p>
+        <% } %>
     </body>
 </html>

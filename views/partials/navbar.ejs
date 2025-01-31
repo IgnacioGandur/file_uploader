@@ -1,0 +1,16 @@
+<%
+    const links = locals.user ? [
+        "logout"
+    ] : [
+        "register",
+        "login",
+    ];
+%>
+
+<nav>
+    <% links.forEach((link) => { %>
+        <a href="/<%= link %>">
+            <%= link %>
+        </a>
+    <% }) %>
+</nav>
