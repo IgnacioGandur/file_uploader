@@ -21,7 +21,45 @@ model Session {
 }
 
 model User {
-    id       Int    @id @default(autoincrement())
-    username String @unique
-    password String
+    id         Int         @id @default(autoincrement())
+    username   String      @unique @db.VarChar(30)
+    password   String
+    userFolder UserFolder?
+}
+
+model UserFolder {
+    id      Int      @id @default(autoincrement())
+    name    String   @unique @db.VarChar
+    owner   User     @relation(fields: [ownerId], references: [id])
+    ownerId Int      @unique
+    files   File[]
+    folders Folder[]
+}
+
+model Folder {
+    id           Int        @id @default(autoincrement())
+    name         String     @db.VarChar(30)
+    createdAt    DateTime   @default(now())
+    updatedAt    DateTime   @updatedAt
+    userFolder   UserFolder @relation(fields: [userFolderId], references: [id])
+    userFolderId Int        @unique
+    files        File[]
+
+    @@unique([name, userFolderId])
+}
+
+model File {
+    id            Int         @id @default(autoincrement())
+    name          String
+    fileExtension String      @db.VarChar(30)
+    mimetype      String      @db.VarChar(30)
+    uploadedAt    DateTime    @default(now())
+    updatedAt     DateTime    @updatedAt
+    userFolder    UserFolder? @relation(fields: [userFolderId], references: [id])
+    userFolderId  Int
+    folder        Folder?     @relation(fields: [folderId], references: [id])
+    folderId      Int
+
+    @@unique([name, fileExtension, mimetype, folderId])
+    @@unique([name, fileExtension, mimetype, userFolderId])
 }
