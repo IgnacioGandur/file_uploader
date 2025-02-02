@@ -37,15 +37,15 @@ model UserFolder {
 }
 
 model Folder {
-    id           Int        @id @default(autoincrement())
-    name         String     @db.VarChar(30)
-    createdAt    DateTime   @default(now())
-    updatedAt    DateTime   @updatedAt
-    userFolder   UserFolder @relation(fields: [userFolderId], references: [id])
-    userFolderId Int        @unique
-    files        File[]
+    id             Int        @id @default(autoincrement())
+    name           String     @db.VarChar(30)
+    createdAt      DateTime   @default(now())
+    updatedAt      DateTime   @updatedAt
+    userFolder     UserFolder @relation(fields: [userFolderName], references: [name])
+    userFolderName String
+    files          File[]
 
-    @@unique([name, userFolderId])
+    @@unique([name, userFolderName])
 }
 
 model File {

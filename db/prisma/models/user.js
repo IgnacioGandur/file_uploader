@@ -1,18 +1,19 @@
-import prisma from "./prismaClient.js";
+import prisma from "../prismaClient.js";
 
-class PrismaInteractions {
+class User {
     constructor(prisma) {
         this.prisma = prisma;
     }
 
-    async insertUser(username, password) {
+    async createUser(username, password) {
         try {
-            await this.prisma.user.create({
+            const result = await this.prisma.user.create({
                 data: {
                     username: username,
                     password: password,
                 },
             });
+            return result.id;
         } catch (error) {
             console.error(
                 "Something went wrong when trying to insert a new user.",
@@ -56,4 +57,4 @@ class PrismaInteractions {
     }
 }
 
-export default new PrismaInteractions(prisma);
+export default new User(prisma);

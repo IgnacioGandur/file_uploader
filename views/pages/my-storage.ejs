@@ -28,8 +28,8 @@
                     </button>
                     <dialog>
                         <form 
-                            action="/my-storage/upload-file" 
                             class="upload-file-form"
+                            action="/my-storage/upload-file" 
                             method="POST"
                             enctype="multipart/form-data"
                         >
@@ -72,6 +72,29 @@
                     <button class="create-folder">
                         Create folder
                     </button>
+                    <dialog>
+                        <form 
+                            class="create-folder-form" 
+                            action="/my-storage/create-folder" 
+                            method="POST" 
+                        >
+                            <label for="folderName">
+                                Folder Name
+                                <input 
+                                    type="text"
+                                    name="folderName"
+                                    id="folderName"
+                                >
+                            </label>
+                            <button type="submit">Create folder</button>
+                            <button 
+                                class="cancel-folder-creation"
+                                type="button"
+                            >
+                                Cancel
+                            </button>
+                        </form>
+                    </dialog>
                 </div>
             </header>
         </main>

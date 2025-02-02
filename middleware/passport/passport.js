@@ -1,6 +1,6 @@
 import passport from "passport";
 import strategy from "./local-strategy.js";
-import prisma from "../../db/prisma/prismaInteractions.js";
+import userModel from "../../db/prisma/models/user.js";
 
 passport.use(strategy);
 
@@ -9,6 +9,6 @@ passport.serializeUser((user, callback) => {
 });
 
 passport.deserializeUser(async (userId, callback) => {
-    const user = await prisma.getUserById(userId);
+    const user = await userModel.getUserById(userId);
     callback(null, user);
 });

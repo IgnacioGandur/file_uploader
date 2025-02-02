@@ -1,10 +1,10 @@
 import LocalStrategy from "passport-local";
-import prisma from "../../db/prisma/prismaInteractions.js";
+import userModel from "../../db/prisma/models/user.js";
 import bcyprt from "bcryptjs";
 
 async function verifyFunction(username, password, callback) {
     try {
-        const user = await prisma.getUserByUsername(username);
+        const user = await userModel.getUserByUsername(username);
 
         if (!user) {
             return callback(null, false);
