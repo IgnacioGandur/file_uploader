@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>My Storage | File Uploader</title>
+        <link
+            rel="stylesheet"
+            href="/stylesheets/index.css"
+        />
+        <link rel="stylesheet" href="/stylesheets/my-storage.css">
+        <script defer src="/javascript/my-storage.js"></script>
+    </head>
+    <body>
+        <%- include("../partials/navbar.ejs") %>
+        <%- include('../partials/sidebar.ejs') %>
+        <main class="my-storage">
+            <header class="header">
+                <div class="logo">
+                    <h1>My Storage</h1>
+                </div>
+                <div class="buttons">
+                    <button class="upload-file">
+                        Upload file
+                    </button>
+                    <dialog>
+                        <form 
+                            action="/my-storage/upload-file" 
+                            class="upload-file-form"
+                            method="POST"
+                            enctype="multipart/form-data"
+                        >
+                            <label for="file">
+                                File:
+                                <input 
+                                    type="file" 
+                                    name="file" 
+                                    id="file"
+                                >
+                            </label>
+                            <label for="filename">
+                                Filename
+                                <input 
+                                    type="text" 
+                                    name="filename" 
+                                    id="filename"
+                                >
+                            </label>
+                            <label for="folder">
+                                Folder
+                                <input 
+                                    type="radio" 
+                                    name="folder" 
+                                    id="folder"
+                                    value="100"
+                                >
+                            </label>
+                            <button type="submit">
+                                Upload
+                            </button>
+                            <button 
+                                class="cancel-file-upload" 
+                                type="button"
+                            >
+                                Cancel
+                            </button>
+                        </form>
+                    </dialog>
+                    <button class="create-folder">
+                        Create folder
+                    </button>
+                </div>
+            </header>
+        </main>
+    </body>
+</html>
