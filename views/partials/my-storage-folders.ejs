@@ -1,0 +1,30 @@
+<div class="folders">
+    <h2>Folders</h2>
+    <% if(locals.userFolder.folders.length > 0) { %>
+        <div class="folders-container">
+            <% userFolder.folders.forEach((folder) => { %>
+                <div class="folder">
+                    <p>
+                        <%= folder.name %>
+                    </p>
+                    <div class="options">
+                        <button>
+                            <span class="material-symbols-rounded">
+                                edit_square
+                            </span>
+                            Edit
+                        </button>
+                        <button>
+                            <span class="material-symbols-rounded">
+                                delete
+                            </span>
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    <% } else { %>
+        <h3>You don't have any folders yet.</h3>
+    <% } %>
+</div>

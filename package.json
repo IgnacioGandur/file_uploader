@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/IgnacioGandur/file_uploader#readme",
   "dependencies": {
-    "@prisma/client": "^6.3.0",
+    "@prisma/client": "^6.3.1",
     "@quixo3/prisma-session-store": "^3.1.13",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.7",
@@ -32,6 +32,6 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.9",
-    "prisma": "^6.3.0"
+    "prisma": "^6.3.1"
   }
 }

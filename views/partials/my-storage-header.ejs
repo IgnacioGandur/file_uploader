@@ -1,0 +1,87 @@
+<header class="header">
+    <div class="logo">
+        <h1>My Storage</h1>
+    </div>
+    <div class="buttons">
+        <button class="upload-file">
+            Upload file
+        </button>
+        <dialog>
+            <form 
+                action="/my-storage/upload-file" 
+                method="post"
+                enctype="multipart/form-data"
+                class="upload-file-form"
+            >
+                <label for="filename">
+                    Filename
+                    <input 
+                        type="text" 
+                        name="filename" 
+                        id="filename"
+                    >
+                </label>
+                <% if(locals.userFolder.folders.length > 0)  { %>
+                    <div class="folders">
+                        <% userFolder.folders.forEach((folder) => { %>
+                            <div class="option">
+                                <label for="<%= folder.name %>">
+                                    <%= folder.name %>
+                                    <input
+                                        type="radio"
+                                        name="folder"
+                                        id="<%= folder.name %>"
+                                        value="<%= folder.id %>"
+                                    >
+                                </label>
+                            </div>
+                        <% }) %>
+                    </div>
+                <% } %>
+                <label for="file">
+                    File:
+                    <input 
+                        type="file" 
+                        name="file" 
+                        id="file"
+                    >
+                </label>
+                <button type="submit">
+                    Upload
+                </button>
+                <button 
+                    class="cancel-file-upload" 
+                    type="button"
+                >
+                    Cancel
+                </button>
+            </form>
+        </dialog>
+        <button class="create-folder">
+            Create folder
+        </button>
+        <dialog>
+            <form 
+                class="create-folder-form" 
+                action="/my-storage/create-folder" 
+                method="POST" 
+            >
+                <label for="folderName">
+                    Folder Name
+                    <input 
+                        type="text"
+                        name="folderName"
+                        id="folderName"
+                    >
+                </label>
+                <button type="submit">Create folder</button>
+                <button 
+                    class="cancel-folder-creation"
+                    type="button"
+                >
+                    Cancel
+                </button>
+            </form>
+        </dialog>
+    </div>
+</header>

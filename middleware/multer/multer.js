@@ -1,24 +1,34 @@
 import multer from "multer";
 import path from "path";
+import folderModel from "../../db/prisma/models/folder.js";
 
 const __dirname = import.meta.dirname;
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
+    destination: async (req, file, cb) => {
+        const { folder: folderId } = req.body;
+        const folder = folderId
+            ? await folderModel.getFolderNameById(folderId)
+            : null;
         const { username } = req.user;
-        const basePath = path.join(__dirname, "..", "..", "public", username);
-        if (req.body.folderId) {
-            const { folderId } = req.body;
-            const folderName = undefined; // TODO: get the folder name from the db using the folder id.
-            const destinPath = path.join(basePath, folderName);
-            return cb(null, destinPath);
-        } else {
-            return cb(null, basePath);
-        }
+        const finalPath = path.join(
+            __dirname,
+            "..",
+            "..",
+            "public",
+            "uploads",
+            username,
+            folder ? folder.name : "",
+        );
+        cb(null, finalPath);
     },
     filename: (req, file, cb) => {
-        const fileExtension = path.extname(file.originalname);
+        const { filename } = req.body;
+        const { originalname } = file;
+        const fileExtension = path.extname(originalname);
+        const finalName = filename ? filename + fileExtension : originalname;
 
-        cb(null, "filename" + fileExtension);
+        req.body.fileExtension = fileExtension;
+        cb(null, finalName);
     },
 });
 

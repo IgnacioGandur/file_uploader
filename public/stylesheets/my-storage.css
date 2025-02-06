@@ -7,4 +7,45 @@
             align-items: center;
         }
     }
+
+    .edit-file-dialog {
+        .delete-file-form {
+            display: none;
+        }
+        .delete-file-form.show {
+            display: block;
+        }
+    }
+
+    .files {
+        .files-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+            padding: 1em;
+
+            .file {
+                padding: 1em;
+                border-radius: var(--border-radius);
+                display: flex;
+                flex-direction: column;
+                gap: 0.25em;
+                position: relative;
+                flex: 0 1 150px;
+
+                .icon {
+                    display: flex;
+                    justify-content: center;
+
+                    span {
+                        font-size: 4rem;
+                    }
+                }
+
+                .filename {
+                    text-align: center;
+                }
+            }
+        }
+    }
 }
