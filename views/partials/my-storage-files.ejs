@@ -1,76 +1,11 @@
-<dialog class="edit-file-dialog">
-    <form 
-        action="/my-storage/update-file/"
-        method="POST"
-        class="edit-file-form"
-    >
-        <label>
-            Filename
-            <input
-                class="updated-filename"
-                type="text"
-                name="updatedFilename"
-                id="updatedFilename"
-                value=""
-            >
-        </label>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-        <div class="buttons">
-            <button type="submit">
-                Update
-            </button>
-            <button 
-                class="hide-edit-file-modal"
-                type="button"
-            >
-                Cancel
-            </button>
-        </div>
-    </form>
-    <button class="show-confirm-file-deletion">
-        <span class="material-symbols-rounded">
-            delete
-        </span>  
-        Delete
-    </button>
-    <form
-        action=""
-        method="POST"
-        class="delete-file-form"
-    >
-        Are you sure you want to delete this file?
-        <button 
-            class="confirm-file-deletion" 
-            type="submit"
-        >
-            Confirm
-        </button>
-        <button 
-            class="hide-file-delete-form" 
-            type="button"
-        >
-            Cancel
-        </button>
-    </form>
-</dialog>
 <div class="files">
     <h2>Files</h2>
-    <% if(locals.userFolder.files.length > 0) { %>
+    <% if(files.length > 0) { %>
         <div class="files-container">
-            <% userFolder.files.forEach((file) => { %>
-                <button
+            <% files.forEach((file) => { %>
+                <a 
                     class="file"
-                    data-id="<%= file.id %>"
-                    data-title="<%= file.name %>"
-                    data-file-extension="<%= file.fileExtension %>"
-                    data-mimetype="<%= file.mimetype %>"
-                    data-uploaded-at="<%= file.uploadedAt %>"
-                    data-updated-at="<%= file.uploadedAt %>"
-                    data-size="<%= file.size %>"
+                    href="/my-storage/files/<%= file.name %>"
                 >
                     <div class="icon">
                         <span class="material-symbols-rounded">
@@ -80,7 +15,7 @@
                     <p class="filename">
                         <%= file.name %><%= file.fileExtension %>
                     </p>
-                </button>
+                </a>
             <% }) %>
         </div>
     <% } else { %>

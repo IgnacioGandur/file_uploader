@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>Folder Details | File Uploader</title>
+        <link
+            rel="stylesheet"
+            href="/stylesheets/index.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/variables.css"
+        />
+        <link 
+            rel="stylesheet" 
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" 
+        />
+        <script defer src="/javascript/folder-details/update-folder.js"></script>
+        <script defer src="/javascript/folder-details/delete-folder.js"></script>
+    </head>
+    <body>
+        <%- include("../partials/navbar.ejs") %> <% if(locals.folder) { %>
+        <main>
+            <header>
+                <h1> <%= folder.name %> </h1>
+                <p>
+                    <%= folder.createdAt %>
+                </p>
+                <% if(folder.createdAt != folder.updatedAt) { %>
+                    <p>
+                        <%= folder.updatedAt %>
+                    </p>
+                <% } %>
+                <div class="buttons">
+                    <button class="edit-folder-name">
+                        Update
+                    </button>
+                    <dialog class="update-folder-dialog">
+                        <form 
+                            action="/my-storage/update-folder/<%= folder.name %>"
+                            method="POST"
+                            class="update-folder-form"
+                        >
+                            <label for="updatedFolderName">
+                                Folder name:
+                                <input 
+                                    type="text"
+                                    name="updatedFolderName"
+                                    id="updatedFolderName"
+                                    value="<%= folder.name %>"
+                                >
+                                <button type="submit">
+                                    Update
+                                </button>
+                                <button 
+                                    class="cancel-folder-update"
+                                    type="button"
+                                >
+                                    Cancel
+                                </button>
+                            </label>
+                        </form>
+                    </dialog>
+                    <button class="delete-folder">
+                        Delete
+                    </button>
+                    <dialog class="delete-folder-dialog">
+                        <form 
+                            action="/my-storage/delete-folder/<%= folder.name %>" 
+                            method="POST" 
+                            class="delete-folder-form"
+                        >
+                            <p>
+                                Delete "<%= folder.name %>" folder?
+                            </p>
+                            <span>
+                                (This can't be undone)
+                            </span>
+                            <button type="submit">
+                                Delete
+                            </button>
+                            <button class="cancel-folder-delete" type="button">
+                                Cancel
+                            </button>
+                        </form>
+                    </dialog>
+                </div>
+            </header>
+            <p>
+                This folder has:
+                <% if(folder.files.length > 0) { %>
+                    <%= folder.files.length %> <%= folder.files.length === 1 ? 'file' :  'files' %>.
+                <% } else { %>
+                    This folder doesn't have any files.
+                <% } %>
+            </p>
+            <% } %>
+            <div class="files-container">
+                <%- include("../partials/my-storage-files.ejs", {files: locals.folder.files}) %>
+            </div>
+    </body>
+        </main>
+</html>

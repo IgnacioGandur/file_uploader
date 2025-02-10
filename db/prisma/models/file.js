@@ -85,6 +85,24 @@ class File {
             throw new Error(error);
         }
     }
+
+    async getFileByName(fileName, username) {
+        try {
+            const file = await this.prisma.file.findFirst({
+                where: {
+                    name: fileName,
+                    userFolderName: username,
+                },
+            });
+
+            return file;
+        } catch (error) {
+            console.error(
+                "Something went wront when trying to get a file by it's name.",
+            );
+            throw new Error(error);
+        }
+    }
 }
 
 export default new File(prisma);

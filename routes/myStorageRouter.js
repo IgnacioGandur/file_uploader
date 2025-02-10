@@ -12,8 +12,6 @@ myStorageRouter.post(
     myStorageController.uploadFilePost,
 );
 
-myStorageRouter.post("/create-folder", myStorageController.createFolderPost);
-
 myStorageRouter.post(
     "/update-file/:fileId",
     myStorageController.updateFilePost,
@@ -22,6 +20,24 @@ myStorageRouter.post(
 myStorageRouter.post(
     "/delete-file/:fileId",
     myStorageController.deleteFilePost,
+);
+
+myStorageRouter.post("/create-folder", myStorageController.createFolderPost);
+
+myStorageRouter.get("/files/:fileName", myStorageController.fileDetailsGet);
+
+myStorageRouter.get(
+    "/folders/:folderName",
+    myStorageController.folderDetailsGet,
+);
+
+myStorageRouter.post(
+    "/update-folder/:folderName",
+    myStorageController.updateFolderPost,
+);
+myStorageRouter.post(
+    "/delete-folder/:folderName",
+    myStorageController.deleteFolderPost,
 );
 
 export default myStorageRouter;

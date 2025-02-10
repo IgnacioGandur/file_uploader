@@ -31,12 +31,71 @@ class FolderModel {
                     name: true,
                 },
             });
-            console.log("content of folder name is: ", folderName);
 
             return folderName;
         } catch (error) {
             console.error(
                 "Something went wrong when trying to get the folder name by it's id.",
+            );
+            throw new Error(error);
+        }
+    }
+
+    async updateFolderName(folderName, username, updatedName) {
+        try {
+            await this.prisma.folder.update({
+                where: {
+                    name_userFolderName: {
+                        name: folderName,
+                        userFolderName: username,
+                    },
+                },
+                data: {
+                    name: updatedName,
+                },
+            });
+        } catch (error) {
+            console.error(
+                "Something went wrong when trying to updated folder name.",
+            );
+            throw new Error(error);
+        }
+    }
+
+    async getFolderByName(username, folderName) {
+        try {
+            const folder = await this.prisma.folder.findFirst({
+                where: {
+                    name: folderName,
+                    userFolderName: username,
+                },
+                include: {
+                    files: true,
+                },
+            });
+
+            return folder;
+        } catch (error) {
+            console.error(
+                "Something went wrong when trying to get folder name.",
+            );
+            throw new Error(error);
+        }
+    }
+
+    async deleteFolder(username, folderName) {
+        try {
+            await this.prisma.folder.delete({
+                where: {
+                    name_userFolderName: {
+                        name: folderName,
+                        userFolderName: username,
+                    },
+                },
+            });
+        } catch (error) {
+            console.error(
+                "Something went wrong when trying to delete a folder.",
             );
             throw new Error(error);
         }

@@ -28,7 +28,11 @@ class UserFolder {
                     name: username,
                 },
                 include: {
-                    folders: true,
+                    folders: {
+                        include: {
+                            files: true,
+                        },
+                    },
                     files: true,
                 },
             });
