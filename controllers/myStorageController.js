@@ -86,6 +86,7 @@ const myStorageController = {
     fileDetailsGet: async (req, res) => {
         const { fileName } = req.params;
         const file = await fileModel.getFileByName(fileName);
+        file.path = file.path.split("public")[1];
         res.render("pages/file-details.ejs", {
             file: file,
         });
