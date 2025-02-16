@@ -5,12 +5,13 @@ class FolderModel {
         this.prisma = prisma;
     }
 
-    async createFolder(username, name) {
+    async createFolder(username, name, cloudinary_path) {
         try {
             await this.prisma.folder.create({
                 data: {
                     name: name,
                     userFolderName: username,
+                    cloudinary_path: cloudinary_path,
                 },
             });
         } catch (error) {

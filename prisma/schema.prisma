@@ -38,31 +38,31 @@ model UserFolder {
 }
 
 model Folder {
-    id             Int        @id @default(autoincrement())
-    name           String     @db.VarChar(30)
-    createdAt      DateTime   @default(now())
-    updatedAt      DateTime   @updatedAt
-    userFolder     UserFolder @relation(fields: [userFolderName], references: [name], onDelete: Cascade, onUpdate: Cascade)
-    userFolderName String
-    files          File[]
+    id              Int        @id @default(autoincrement())
+    name            String     @db.VarChar(30)
+    createdAt       DateTime   @default(now())
+    updatedAt       DateTime   @updatedAt
+    userFolder      UserFolder @relation(fields: [userFolderName], references: [name], onDelete: Cascade, onUpdate: Cascade)
+    userFolderName  String
+    files           File[]
 
     @@unique([name, userFolderName])
 }
 
 model File {
-    id             Int         @id @default(autoincrement())
-    name           String
-    fileExtension  String      @db.VarChar(30)
-    mimetype       String      @db.VarChar(30)
-    uploadedAt     DateTime    @default(now())
-    updatedAt      DateTime    @updatedAt
-    userFolder     UserFolder? @relation(fields: [userFolderName], references: [name], onDelete: Cascade, onUpdate: Cascade)
-    userFolderName String?
-    folder         Folder?     @relation(fields: [folderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-    folderId       Int?
-    size           BigInt
-    destination    String
-    path           String
+    id                   Int         @id @default(autoincrement())
+    name                 String
+    fileExtension        String      @db.VarChar(30)
+    mimetype             String      @db.VarChar(30)
+    uploadedAt           DateTime    @default(now())
+    updatedAt            DateTime    @updatedAt
+    userFolder           UserFolder? @relation(fields: [userFolderName], references: [name], onDelete: Cascade, onUpdate: Cascade)
+    userFolderName       String?
+    folder               Folder?     @relation(fields: [folderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    folderId             Int?
+    size                 BigInt
+    cloudinary_url       String
+    cloudinary_public_id String
 
     @@unique([name, folderId])
     @@unique([name, userFolderName])

@@ -38,6 +38,7 @@ app.use(
 app.use(passport.session());
 
 import("./middleware/passport/passport.js");
+import("./cloudinary/cloudinary.js");
 
 app.use(router);
 

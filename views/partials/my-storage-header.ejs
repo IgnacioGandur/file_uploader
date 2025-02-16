@@ -15,6 +15,7 @@
             >
                 <label for="filename">
                     Filename
+                    (leave blank to use current filename)
                     <input 
                         type="text" 
                         name="filename" 
@@ -23,6 +24,7 @@
                 </label>
                 <% if(locals.userFolder.folders.length > 0)  { %>
                     <div class="folders">
+                        Save file in folder?
                         <% userFolder.folders.forEach((folder) => { %>
                             <div class="option">
                                 <label for="<%= folder.name %>">

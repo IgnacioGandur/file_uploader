@@ -12,11 +12,11 @@ class File {
         size,
         username,
         folderId,
-        destination,
-        path,
+        cloudinary_url,
+        cloudinary_public_id,
     ) {
         try {
-            await this.prisma.file.create({
+            const file = await this.prisma.file.create({
                 data: {
                     name: name,
                     fileExtension: fileExtension,
@@ -24,17 +24,24 @@ class File {
                     size: size,
                     userFolderName: username,
                     folderId: folderId ? Number(folderId) : null,
-                    destination: destination,
-                    path: path,
+                    cloudinary_url: cloudinary_url,
+                    cloudinary_public_id: cloudinary_public_id,
                 },
             });
+            return file.id;
         } catch (error) {
             console.error("Something went wrong when trying to create a file.");
             throw new Error(error);
         }
     }
 
-    async updateFileName(fileId, username, updatedFileName) {
+    async updateFile(
+        fileId,
+        username,
+        updatedFileName,
+        updated_cloudinary_public_id,
+        updated_cloudinary_url,
+    ) {
         try {
             await this.prisma.file.update({
                 where: {
@@ -43,6 +50,8 @@ class File {
                 },
                 data: {
                     name: updatedFileName,
+                    cloudinary_public_id: updated_cloudinary_public_id,
+                    cloudinary_url: updated_cloudinary_url,
                 },
             });
         } catch (error) {

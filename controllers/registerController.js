@@ -1,7 +1,8 @@
 import bcrypt from "bcryptjs";
-import fsCreateUserFolder from "../utilities/fs/createUserFolder.js";
+// import fsCreateUserFolder from "../utilities/fs/createUserFolder.js";
 import userModel from "../db/prisma/models/user.js";
 import userFolderModel from "../db/prisma/models/userFolder.js";
+import cloudinaryInteractions from "../cloudinary/cloudinaryInteractions.js";
 
 const registerController = {
     registerGet: (req, res) => {
@@ -13,7 +14,8 @@ const registerController = {
         const hashedPassword = await bcrypt.hash(password, 10);
         const ownerId = await userModel.createUser(username, hashedPassword);
         await userFolderModel.createUserFolder(username, ownerId);
-        fsCreateUserFolder(username);
+        // fsCreateUserFolder(username);
+        cloudinaryInteractions.createUserFolder(username);
 
         res.redirect("/login?username=" + encodeURIComponent(username));
     },
