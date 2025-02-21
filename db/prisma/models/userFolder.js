@@ -39,10 +39,10 @@ class UserFolder {
 
             return userFolder;
         } catch (error) {
-            console.error(
+            console.error("Prisma error:", error.message);
+            throw new Error(
                 "Something went wrong when trying to get the user folder.",
             );
-            throw new Error(error);
         }
     }
 }

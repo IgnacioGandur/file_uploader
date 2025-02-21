@@ -1,13 +1,9 @@
 import folderModel from "../db/prisma/models/folder.js";
-// import fsCreateFolder from "../utilities/fs/createFolder.js";
 import userFolderModel from "../db/prisma/models/userFolder.js";
 import fileModel from "../db/prisma/models/file.js";
-// import fsUpdateFileName from "../utilities/fs/updateFileName.js";
-// import fsDeleteFile from "../utilities/fs/deleteFile.js";
-// import fsUpdateFolderName from "../utilities/fs/updateFolderName.js";
-import fsDeleteFolder from "../utilities/fs/deleteFolder.js";
 import cloudinaryInteractions from "../cloudinary/cloudinaryInteractions.js";
 import path from "path";
+import formatBytes from "../utilities/formatBytes.js";
 
 const myStorageController = {
     myStorageGet: async (req, res) => {
@@ -25,22 +21,13 @@ const myStorageController = {
         const { filename, folder } = req.body;
         const fileExtension = path.extname(originalname);
         const finalFilename = !filename ? originalname.split(".")[0] : filename;
-        // let folderName = undefined;
-
-        // if (folder) {
-        //     folderName = await folderModel.getFolderNameById(folder);
-        // }
 
         const public_id = `${Date.now()}/${finalFilename}${fileExtension}`;
-        // const cloudinaryFolder = path.join(
-        //     username,
-        //     folderName ? folderName.name : "",
-        // );
 
         const uploadResult = await cloudinaryInteractions.uploadFile(
             buffer, // File buffer.
             public_id, // File name in cloudinary.
-            username, // Folder to store the file into.
+            username, // User folder to store the file into.
         );
 
         await fileModel.createFile(
@@ -60,16 +47,8 @@ const myStorageController = {
     createFolderPost: async (req, res) => {
         const { folderName } = req.body;
         const { username } = req.user;
-        // const cloudinaryResult = await cloudinaryInteractions.createFolder(
-        //     username,
-        //     folderName,
-        // );
 
-        await folderModel.createFolder(
-            username,
-            folderName,
-            // cloudinaryResult.path,
-        );
+        await folderModel.createFolder(username, folderName);
 
         res.redirect("/my-storage");
     },
@@ -120,7 +99,6 @@ const myStorageController = {
         const { folderName } = req.params;
         const { updatedFolderName } = req.body;
 
-        // fsUpdateFolderName(username, folderName, updatedFolderName);
         await folderModel.updateFolderName(
             folderName,
             username,
@@ -132,7 +110,7 @@ const myStorageController = {
     fileDetailsGet: async (req, res) => {
         const { fileName } = req.params;
         const file = await fileModel.getFileByName(fileName);
-        // file.path = file.path.split("public")[1];
+        file.size = formatBytes(file.size, 2);
         res.render("pages/file-details.ejs", {
             file: file,
         });
@@ -151,7 +129,6 @@ const myStorageController = {
     deleteFolderPost: async (req, res) => {
         const { folderName } = req.params;
         const { username } = req.user;
-        // fsDeleteFolder(username, folderName);
 
         const folder = await folderModel.getFolderByName(username, folderName);
 
@@ -160,8 +137,6 @@ const myStorageController = {
         for (let i = 0; i < folder.files.length; i++) {
             public_ids_array.push(folder.files[i].cloudinary_public_id);
         }
-
-        console.log("array of public ids is:", public_ids_array);
 
         const result =
             await cloudinaryInteractions.deleteFilesFromFolder(

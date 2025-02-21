@@ -1,0 +1,11 @@
+<% if(locals.validationErrors) { %>
+    <div class="errors">
+        <% validationErrors.forEach((error) => { %>
+            <div class="error">
+                <p class="message">
+                    <%= error.msg %>
+                </p>
+            </div>
+        <% }) %>
+    </div>
+<% } %>

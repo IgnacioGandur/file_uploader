@@ -101,6 +101,30 @@ class FolderModel {
             throw new Error(error);
         }
     }
+
+    async checkIfFolderNameIsAvailable(username, folderName) {
+        try {
+            const result = await this.prisma.folder.findUnique({
+                where: {
+                    name_userFolderName: {
+                        name: folderName,
+                        userFolderName: username,
+                    },
+                },
+            });
+
+            if (result) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (error) {
+            console.error("Prisma error:", error.message);
+            throw new Error(
+                "Something went wrong when trying to check if the folder name is available.",
+            );
+        }
+    }
 }
 
 export default new FolderModel(prisma);

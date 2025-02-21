@@ -19,6 +19,7 @@
     <body>
         <%- include("../partials/navbar.ejs") %>
         <%- include("../partials/sidebar.ejs") %>
+        <%- include("../partials/errors.ejs", {errors: locals.validationErrors }) %>
         <main class="my-storage">
             <%- include("../partials/my-storage-header.ejs", {userFolder: locals.userFolder}) %>
             <%- include("../partials/my-storage-files.ejs", {userFolder: locals.userFolder}) %>

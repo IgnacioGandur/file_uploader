@@ -112,6 +112,30 @@ class File {
             throw new Error(error);
         }
     }
+
+    async checkIfFilenameIsAvailable(username, filename) {
+        try {
+            const result = await this.prisma.file.findUnique({
+                where: {
+                    name_userFolderName: {
+                        name: filename,
+                        userFolderName: username,
+                    },
+                },
+            });
+
+            if (result) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (error) {
+            console.error("Database error: ", error.message);
+            throw new Error(
+                "Something went wrong when trying to check if the filename is available.",
+            );
+        }
+    }
 }
 
 export default new File(prisma);
