@@ -11,6 +11,7 @@
     </head>
     <body>
         <%- include("../partials/navbar.ejs") %>
+        <%- include("../partials/errors.ejs", {errors: locals.validationErrors}) %>
         <h1>Login</h1>
         <% if(locals.username) { %>
             <p>

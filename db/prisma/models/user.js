@@ -69,9 +69,30 @@ class User {
                 return false;
             }
         } catch (error) {
-            console.error("Prisma error: ", error.message);
-            throw new Error(
+            console.error(
                 "Something went wrong when trying to check if the username is already taken.",
+            );
+            throw new Error(error);
+        }
+    }
+
+    async checkIfUserExistsByUsername(username) {
+        try {
+            const result = await this.prisma.user.findUnique({
+                where: {
+                    username: username,
+                },
+            });
+
+            if (result) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            console.error("Prisma error:", error.message);
+            throw new Error(
+                "Something went wrong when trying to check if the user exists by it's username.",
             );
         }
     }

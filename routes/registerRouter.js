@@ -1,10 +1,10 @@
 import { Router } from "express";
 import registerController from "../controllers/registerController.js";
-import validateUser from "../validators/user/validateUsername.js";
+import validateUserRegister from "../validators/user/register/validateUserRegister.js";
 
 const registerRouter = Router();
 
 registerRouter.get("/", registerController.registerGet);
-registerRouter.post("/", validateUser, registerController.registerPost);
+registerRouter.post("/", validateUserRegister, registerController.registerPost);
 
 export default registerRouter;

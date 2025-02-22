@@ -1,34 +1,16 @@
 import { body, validationResult } from "express-validator";
-import userModel from "../../db/prisma/models/user.js";
-
-function checkIfPasswordsMatch(password, { req }) {
-    const { confirmPassword } = req.body;
-    if (password !== confirmPassword) {
-        throw new Error("The passwords don't match.");
-    } else {
-        return true;
-    }
-}
-
-async function checkIfUsernameIsAlreadyTaken(username) {
-    const isAlreadyTaken =
-        await userModel.checkIfUsernameIsAlreadyTaken(username);
-
-    if (isAlreadyTaken) {
-        throw new Error(
-            `The username "${username}" is already taken, please try another one. `,
-        );
-    } else {
-        return true;
-    }
-}
+import checkIfPasswordsMatch from "./custom-validators/checkIfPasswordsMatch.js";
+import checkIfUsernameIsAlreadyTaken from "./custom-validators/checkIfUsernameIsAlreadyTaken.js";
+import checkIfUsernameMatchesRegex from "./custom-validators/checkIfUsernameMatchesRegex.js";
 
 const validationChain = [
     body("username")
+        .escape()
         .trim()
         .notEmpty()
         .withMessage("Username can't be empty.")
         .bail()
+        .custom(checkIfUsernameMatchesRegex)
         .custom(checkIfUsernameIsAlreadyTaken),
     body("password")
         .trim()
@@ -38,7 +20,7 @@ const validationChain = [
         .custom(checkIfPasswordsMatch),
 ];
 
-const validateUser = [
+const validateUserRegister = [
     validationChain,
     async (req, res, next) => {
         const validationErrors = validationResult(req);
@@ -53,4 +35,4 @@ const validateUser = [
     },
 ];
 
-export default validateUser;
+export default validateUserRegister;
