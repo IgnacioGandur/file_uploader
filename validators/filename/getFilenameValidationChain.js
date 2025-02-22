@@ -1,5 +1,4 @@
 import { body } from "express-validator";
-import validateFileSize from "./custom-validators/validateFileSize.js";
 import checkIfFilenameIsAvailable from "./custom-validators/checkIfFilenameIsAvailable.js";
 
 function getFilenameValidationChain(fieldName, optional = false) {
@@ -17,7 +16,6 @@ function getFilenameValidationChain(fieldName, optional = false) {
             'Filename must only contain letters, numbers and hyphens ("-", "_").',
         )
         .bail()
-        .custom(validateFileSize)
         .custom(checkIfFilenameIsAvailable);
 
     return optional

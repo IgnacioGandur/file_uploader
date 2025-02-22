@@ -25,7 +25,7 @@ myStorageRouter.post(
 
 myStorageRouter.post(
     "/update-file/:fileId",
-    validateFilenameUpdate,
+    validateFilenameUpdate, // FIX: validation chain is validating file size when updating filename, avoid that.
     myStorageController.updateFilePost,
 );
 
