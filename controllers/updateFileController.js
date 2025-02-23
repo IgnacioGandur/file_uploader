@@ -3,9 +3,11 @@ import cloudinaryInteractions from "../cloudinary/cloudinaryInteractions.js";
 
 const updateFileController = {
     updateFilePost: async (req, res) => {
+        console.log("the content of req.params is:", req.params);
         const { fileId } = req.params;
         const { username } = req.user;
         const { updatedFilename } = req.body;
+        console.log("the content of file id in update file post is:", fileId);
         const { name, cloudinary_public_id } =
             await fileModel.getFileById(fileId);
 

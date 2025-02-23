@@ -1,5 +1,4 @@
 import { v2 as cloudinary } from "cloudinary";
-import path from "path";
 
 const cloudinaryInteractions = {
     createUserFolder: (username) => {
@@ -27,14 +26,6 @@ const cloudinaryInteractions = {
                 .end(fileBuffer);
         });
     },
-
-    // createFolder: (username, folderName) => {
-    //     const folderPath = path.join(username, folderName);
-    //
-    //     const result = cloudinary.api.create_folder(folderPath);
-    //
-    //     return result;
-    // },
 
     updateFilename: async (from_public_id, to_public_id) => {
         try {
@@ -65,15 +56,7 @@ const cloudinaryInteractions = {
                 invalidate: true,
             };
 
-            const result = await cloudinary.uploader.destroy(
-                public_id,
-                options,
-            );
-
-            console.log(
-                "The content of result when deleting a file from cloudinary is: ",
-                result,
-            );
+            await cloudinary.uploader.destroy(public_id, options);
         } catch (error) {
             console.error(error.message);
             throw new Error(
@@ -84,6 +67,9 @@ const cloudinaryInteractions = {
 
     deleteFilesFromFolder: async (public_ids_array) => {
         try {
+            if (public_ids_array.length === 0) {
+                return;
+            }
             const options = { resource_type: "raw", invalidate: true };
             const result = await cloudinary.api.delete_resources(
                 public_ids_array,
@@ -91,7 +77,10 @@ const cloudinaryInteractions = {
             );
             return result;
         } catch (error) {
-            throw new Error(error);
+            console.error("Cloudinary error:", error.message);
+            throw new Error(
+                "Something went wrong when trying to delete the files from a folder in Cloudinary.",
+            );
         }
     },
 };

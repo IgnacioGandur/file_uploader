@@ -5,7 +5,7 @@ import validateFilenameUpdate from "../validators/filename/validateFilenameUpdat
 const updateFileRouter = Router();
 
 updateFileRouter.post(
-    "/",
+    "/:fileId",
     validateFilenameUpdate,
     updateFileController.updateFilePost,
 );
