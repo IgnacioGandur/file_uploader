@@ -1,7 +1,7 @@
 *,
 *::after,
 *::before {
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -14,10 +14,13 @@ body {
     color: white;
 }
 
-a {
-    color: white;
+body {
+    display: flex;
+    /*flex-direction: column;*/
+    /*gap: 1em;*/
+    font-family: var(--font);
 }
 
-a:visited {
-    color: yellow;
+.material-symbols-rounded {
+    font-weight: 100 !important;
 }

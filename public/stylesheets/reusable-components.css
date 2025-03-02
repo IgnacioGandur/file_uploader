@@ -1,0 +1,55 @@
+.input-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+
+    .icon-and-input {
+        display: flex;
+        border: var(--border);
+        border-radius: calc(var(--button-border-radius) + 5px);
+
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: var(--padding-small);
+            border: none;
+            border-right: 2px solid var(--color-white-dimmed);
+
+            span {
+                font-size: 2rem;
+            }
+        }
+
+        .input {
+            width: 100%;
+            background-color: transparent;
+            color: white;
+            padding: var(--padding-small);
+            font-size: var(--font-size-small);
+            border: none;
+        }
+    }
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    padding: 0.7em 1em;
+    background-color: transparent;
+    color: white;
+    border-radius: var(--button-border-radius);
+    border: var(--border);
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.button:hover,
+.button:focus-visible {
+    border: var(--border-hovered);
+}

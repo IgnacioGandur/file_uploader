@@ -1,0 +1,63 @@
+<%
+    const links = locals.user ? [
+        {
+            text: "My storage",
+            href: "/my-storage",
+            icon: "inventory_2"
+        },
+        {
+            text: "About",
+            href: "/about",
+            icon: "lightbulb"
+        },
+        {
+            text: "Github repo",
+            href: "https://github.com/IgnacioGandur/file_uploader",
+            icon: "code"
+        },
+        {
+            text: "Logout",
+            href: "/logout",
+            icon: "logout"
+        },
+    ] : [
+        {
+            text: "Register",
+            href: "/register",
+            icon: "signature"
+        },
+        {
+            text: "Login",
+            href: "/login",
+            icon: "login"
+        },
+        {
+            text: "About",
+            href: "/about",
+            icon: "lightbulb"
+        },
+        {
+            text: "Github repo",
+            href: "https://github.com/IgnacioGandur/file_uploader",
+            icon: "code"
+        },
+    ];
+%>
+
+<nav class="vertical-navbar">
+    <% links.forEach((link) => { %>
+        <% const isActive = locals.activeLink === link.href  || (link.href !== '/' && locals.activeLink.startsWith(link.href)); %>
+        <a 
+            class="link <%= link.text === 'Logout' ? 'logout' : '' %> <%= isActive ? 'active' : '' %>"
+            href="<%= link.href %>"
+            <%= link.text === "Github repo" ? "target='about_blank'" : "" %>
+        >
+            <span class="icon material-symbols-rounded">
+                <%= link.icon %>
+            </span>
+            <span class="text">
+                <%= link.text %>
+            </span>
+        </a>
+    <% }) %>
+</nav>

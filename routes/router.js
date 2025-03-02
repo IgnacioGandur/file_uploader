@@ -11,10 +11,12 @@ import myStorageRouter from "./myStorageRouter.js";
 import allowIfLogged from "../middleware/allowIfLogged.js";
 import checkIfUserIsLogged from "../middleware/checkIfUserIsLogged.js";
 import attachUserToRes from "../middleware/attachUserToRes.js";
+import setActiveLink from "../middleware/setActiveLink.js";
 
 const router = Router();
 
 router.use(attachUserToRes);
+router.use(setActiveLink);
 router.use("/", indexRouter);
 router.use("/register", checkIfUserIsLogged, registerRouter);
 router.use("/login", checkIfUserIsLogged, loginRouter);

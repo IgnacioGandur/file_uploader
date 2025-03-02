@@ -1,0 +1,47 @@
+.horizontal-navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em;
+    border-bottom: 1px solid var(--color-white-dimmed);
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+
+        img {
+            width: 40px;
+            height: 40px;
+        }
+
+        h2 {
+            font-size: var(--font-size-small);
+        }
+    }
+
+    .user {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+
+        .ppf {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .username {
+            font-weight: 900;
+        }
+    }
+}

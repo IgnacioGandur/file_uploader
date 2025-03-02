@@ -8,7 +8,7 @@ async function checkIfFilenameIsAvailable(filename, { req }) {
     );
     if (!isAvailable) {
         throw new Error(
-            `You already have another file called "${filename}", please user another one.`,
+            `You already have another file called "${filename}", please use another name.`,
         );
     }
 }

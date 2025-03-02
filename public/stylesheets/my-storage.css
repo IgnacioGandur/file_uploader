@@ -1,10 +1,48 @@
 .my-storage {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font);
+    flex: 1;
+
+    > * {
+        padding: var(--padding-average);
+    }
+
     .header {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        font-family: var(--font);
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
         .buttons {
             display: flex;
             align-items: center;
+            gap: 1em;
+
+            button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5em;
+                padding: 0.7em 1em;
+                background-color: transparent;
+                color: white;
+                border-radius: var(--button-border-radius);
+                border: 2px solid var(--color-white-dimmed);
+                font-weight: 900;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+
+            button:hover,
+            button:focus-visible {
+                border: 2px solid var(--color-main);
+                box-shadow: var(--box-shadow);
+            }
         }
     }
 
@@ -17,34 +55,98 @@
         }
     }
 
-    .files {
-        .files-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1em;
-            padding: 1em;
+    .files,
+    .folders {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap-average);
 
-            .file {
-                padding: 1em;
-                border-radius: var(--border-radius);
-                display: flex;
-                flex-direction: column;
-                gap: 0.25em;
-                position: relative;
-                flex: 0 1 150px;
+        .title {
+            font-size: var(--font-size-medium);
+        }
 
-                .icon {
+        .files-container,
+        .folders-container {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(8, auto);
+            gap: var(--gap-small);
+            padding: var(--padding-big) 0.5em;
+            border: 1px solid var(--color-white-dimmed);
+            border-radius: 10px;
+
+            .header {
+                font-weight: 900;
+                text-transform: capitalize;
+            }
+
+            .file,
+            .folder {
+                display: contents;
+                color: white;
+
+                .box {
+                    width: 100% !important;
                     display: flex;
+                    align-items: center;
+                }
+
+                .box.icon {
                     justify-content: center;
 
                     span {
-                        font-size: 4rem;
+                        font-size: 3rem;
+                        color: white;
                     }
                 }
 
-                .filename {
-                    text-align: center;
+                .box.files {
+                    justify-content: center;
                 }
+
+                .box.options {
+                    button {
+                        background-color: transparent;
+                        border: var(--border);
+                        border-radius: calc(var(--button-border-radius) / 2);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: var(--transition);
+                        cursor: pointer;
+
+                        span {
+                            color: white;
+                        }
+                    }
+
+                    button:hover,
+                    button:focus-visible {
+                        border: var(--border-hovered);
+                    }
+                }
+            }
+
+            .separator {
+                grid-column: 1 / -1;
+                height: 1px;
+                background-image: var(--radial-gradient-1);
+            }
+        }
+
+        .folders-container {
+            grid-template-columns: repeat(6, auto);
+        }
+
+        .empty-files,
+        .empty-folders {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+
+            h3 {
+                font-size: var(--font-size-small);
             }
         }
     }

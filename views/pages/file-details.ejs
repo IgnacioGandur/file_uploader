@@ -12,7 +12,23 @@
         />
         <link
             rel="stylesheet"
+            href="/stylesheets/file-folder-details.css"
+        />
+        <link
+            rel="stylesheet"
             href="/stylesheets/variables.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/vertical-navbar.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/horizontal-navbar.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/reusable-components.css"
         />
         <link
             rel="stylesheet"
@@ -24,34 +40,85 @@
         <link rel="icon" type="image/png" href="/icons/favicon-16x16.png" sizes="16x16" />
     </head>
     <body>
-        <%- include("../partials/navbar.ejs") %>
+        <%- include("../partials/vertical-navbar.ejs") %>
         <%- include("../partials/errors.ejs", {errors: locals.validationErrors}) %>
-        <main class="files">
-            <h1><%= file.name %></h1>
-            <div class="file-icon"> icon placeholder </div>
-            <form 
-                action="/my-storage/update-file/<%= file.id %>" 
-                method="POST" 
-                class="update-file-form"
-            >
-                <label for="updatedFilename">
-                    Update filename
-                    <input
-                        type="text"
-                        name="updatedFilename"
-                        id="updatedFilename"
-                        value="<%= file.name %>"
-                    />
-                    <button type="submit"> Update </button>
-                </label>
-            </form>
-            <p>Mimetype: <%= file.mimetype %></p>
-            <p>Uploaded at: <%= file.uploadedAt %> </p>
-            <%  if(file.createdAt !== file.updatedAt) { %>
-                <p> Updated at: <%= file.updatedAt %></p>
-            <% } %>
-            <p>Size: <%= file.size %> </p>
-            <button class="show-delete-dialog">Delete</button>
+        <main class="file-details">
+            <%- include ("../partials/horizontal-navbar.ejs") %>
+            <div class="content">
+                <div class="wrapper">
+                    <h1 class="filename">
+                        <%= file.name %><%= file.fileExtension %>
+                    </h1>
+                    <div class="file-icon">
+                        <span class="icon material-symbols-rounded">description</span>
+                    </div>
+                    <div class="details-container">
+                        <div class="field mimetype">
+                            <span class="icon material-symbols-rounded">draft</span>
+                            <div class="vertical-separator"></div>
+                            <p>Mimetype: <%= file.mimetype %></p>
+                        </div>
+                        <%  if(file.createdAt !== file.updatedAt) { %>
+                            <div class="field uploaded-at">
+                                <span class="icon material-symbols-rounded">history</span>
+                                <div class="vertical-separator"></div>
+                                <p>Uploaded at: <%= file.uploadedAt %> </p>
+                            </div>
+                        <% } %>
+                        <div class="field updated-at">
+                            <span class="icon material-symbols-rounded">update</span>
+                            <div class="vertical-separator"></div>
+                            <p> Updated at: <%= file.updatedAt %></p>
+                        </div>
+                        <div class="field size">
+                            <span class="icon material-symbols-rounded">weight</span>
+                            <div class="vertical-separator"></div>
+                            <p>Size: <%= file.size %> </p>
+                        </div>
+                    </div>
+                    <form 
+                        action="/my-storage/update-file/<%= file.id %>" 
+                        method="POST" 
+                        class="update-file-form"
+                    >
+                        <div class="input-field">
+                            <label class="label" for="updatedFilename">
+                                Update file name
+                            </label>
+                            <div class="icon-and-input">
+                                <div class="icon">
+                                    <span class="material-symbols-rounded">
+                                        edit
+                                    </span>
+                                </div>
+                                <input
+                                    class="input"
+                                    type="text"
+                                    name="updatedFilename"
+                                    id="updatedFilename"
+                                    value="<%= file.name %>"
+                                />
+                            </div>
+                        </div>
+                        <button 
+                            class="button" 
+                            type="submit"
+                        >
+                            Update
+                        </button>
+                    </form>
+                    <div class="buttons-container">
+                        <a 
+                            href="<%= file.cloudinary_url %>" 
+                            class="button download-file"
+                            download 
+                        >
+                            Download
+                        </a>
+                        <button class="button show-delete-dialog">Delete</button>
+                    </div>
+                </div>
+            </div>
             <dialog class="delete-file-dialog">
                 <form
                     action="/my-storage/delete-file/<%= file.id %>"
@@ -64,13 +131,6 @@
                     <button class="cancel-file-delete" type="button">Cancel</button>
                 </form>
             </dialog>
-            <a 
-                href="<%= file.cloudinary_url %>" 
-                class="download-file"
-                download 
-            >
-                Download
-            </a>
         </main>
     </body>
 </html>

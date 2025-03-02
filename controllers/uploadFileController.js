@@ -18,7 +18,7 @@ const uploadFileController = {
             username, // User folder to store the file into.
         );
 
-        await fileModel.createFile(
+        const prismaResult = await fileModel.createFile(
             finalFilename,
             fileExtension,
             mimetype,
@@ -28,6 +28,9 @@ const uploadFileController = {
             uploadResult.secure_url,
             uploadResult.public_id,
         );
+
+        console.log("The content of  cloudinary upload is:", uploadResult);
+        console.log("The content of  prisma upload is:", prismaResult);
 
         res.redirect("/my-storage");
     },

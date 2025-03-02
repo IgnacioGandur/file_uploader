@@ -1,0 +1,18 @@
+<nav class="horizontal-navbar">
+    <div class="logo">
+        <img src="/icons/icon.png" alt="Website logo" >
+        <h2>
+            File Uploader
+        </h2>
+    </div>
+    <% if(locals.user) { %>
+        <div class="user">
+            <div class="ppf">
+                <img src="/images/generic_profile_picture.svg">
+            </div>
+            <p class="username">
+                <%= user.username %>
+            </p>
+        </div>
+    <% } %>
+</nav>

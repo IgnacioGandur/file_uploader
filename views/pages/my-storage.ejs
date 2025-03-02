@@ -13,18 +13,21 @@
         />
         <link rel="stylesheet" href="/stylesheets/my-storage.css">
         <link rel="stylesheet" href="/stylesheets/variables.css">
+        <link rel="stylesheet" href="/stylesheets/vertical-navbar.css">
+        <link rel="stylesheet" href="/stylesheets/horizontal-navbar.css">
+        <link rel="stylesheet" href="/stylesheets/errors.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        <script defer src="/javascript/my-storage.js"></script>
         <link rel="icon" type="image/png" href="/icons/favicon-32x32.png" sizes="32x32" />
         <link rel="icon" type="image/png" href="/icons/favicon-16x16.png" sizes="16x16" />
+        <script defer src="/javascript/my-storage.js"></script>
     </head>
     <body>
-        <%- include("../partials/navbar.ejs") %>
-        <%- include("../partials/sidebar.ejs") %>
-        <%- include("../partials/errors.ejs", {errors: locals.validationErrors }) %>
+        <%- include("../partials/vertical-navbar.ejs") %>
         <main class="my-storage">
+            <%- include("../partials/horizontal-navbar.ejs") %>
+            <%- include("../partials/errors.ejs", {errors: locals.validationErrors }) %>
             <%- include("../partials/my-storage-header.ejs", {userFolder: locals.userFolder}) %>
-            <%- include("../partials/my-storage-files.ejs", {userFolder: locals.userFolder}) %>
+            <%- include("../partials/my-storage-files.ejs", {userFolder: locals.userFolder, filesInFolder:false}) %>
             <%- include("../partials/my-storage-folders.ejs", {userFolder: locals.userFolder}) %>
         </main>
     </body>

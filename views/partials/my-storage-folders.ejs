@@ -1,51 +1,60 @@
-<dialog class="edit-folder-dialog">
-    <form
-        action=""
-        method="POST"
-        class="edit-folder-form"
-    >
-        <label for="updatedFolderName">
-            New folder name
-            <input 
-                type="text"
-                name="updatedFolderName"
-                id="updatedFolderName"
-                class="updated-folder-name"
-            >
-        </label>
-        <p>
-        </p>
-        <p>
-        </p>
-        <button type="submit">
-            Update
-        </button>
-        <button type="button">
-            Cancel
-        </button>
-    </form>
-</dialog>
 <div class="folders">
-    <h2>Folders</h2>
+    <h2 class="title">Folders</h2>
     <% if(locals.userFolder.folders.length > 0) { %>
         <div class="folders-container">
+            <p class="header empty">
+            </p>
+            <p class="header name">
+                Folder name
+            </p>
+            <p class="header created-at">
+                Created at
+            </p>
+            <p class="header updated-at">
+                updated at
+            </p>
+            <p class="header files">
+                Files in folder
+            </p>
+            <p class="header empty">
+            </p>
             <% userFolder.folders.forEach((folder) => { %>
+                <div class="separator">
+                </div>
                 <a 
                     class="folder"
                     href="/my-storage/folders/<%= folder.name %>"
                 >
-                    <div class="icon">
+                    <div class="box icon">
                         <span class="material-symbols-rounded">
                             folder
                         </span>
-                        <p>
-                            <%= folder.name %>
-                        </p>
                     </div>
-                </button>
+                    <p class="box folder-name">
+                        <%= folder.name %>
+                    </p>
+                    <p class="box created-at">
+                        <%= folder.createdAt %>
+                    </p>
+                    <p class="box updated-at">
+                        <%= folder.updatedAt %>
+                    </p>
+                    <p class="box files">
+                        <%= folder.files.length %>
+                    </p>
+                    <div class="box options">
+                        <button>
+                            <span class="material-symbols-rounded">
+                                more_vert
+                            </span>
+                        </button>
+                    </div>
+                </a>
             <% }) %>
         </div>
     <% } else { %>
-        <h3>You don't have any folders yet.</h3>
+        <div class="empty-folders">
+            <h3>You don't have any folders yet.</h3>
+        </div>
     <% } %>
 </div>

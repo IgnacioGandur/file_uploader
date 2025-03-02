@@ -1,24 +1,78 @@
 <div class="files">
-    <h2>Files</h2>
+    <h2 class="title">Files</h2>
     <% if(files.length > 0) { %>
         <div class="files-container">
+            <p class="header empty">
+            </p>
+            <p class="header filename">
+                Filename
+            </p>
+            <p class="header extension">
+                Extension
+            </p>
+            <p class="header mimetype">
+                Mimetype
+            </p>
+            <p class="header uploaded-at">
+                Uploaded at
+            </p>
+            <p class="header updated-at">
+                UpdatedAt
+            </p>
+            <p class="header size">
+                Size
+            </p>
+            <p class="header empty options">
+            </p>
             <% files.forEach((file) => { %>
+                <div class="separator">
+                </div>
                 <a 
                     class="file"
                     href="/my-storage/files/<%= file.name %>"
                 >
-                    <div class="icon">
+                    <div class="box icon">
                         <span class="material-symbols-rounded">
                             description
                         </span>
                     </div>
-                    <p class="filename">
-                        <%= file.name %><%= file.fileExtension %>
+                    <p class="box name">
+                        <%= file.name %>
                     </p>
+                    <p class="box extension">
+                        <%= file.fileExtension %>
+                    </p>
+                    <p class="box mimetype">
+                        <%= file.mimetype %>
+                    </p>
+                    <p class="box uploaded-at">
+                        <%= file.uploadedAt %>
+                    </p>
+                    <p class="box updated-at">
+                        <%= file.updatedAt %>
+                    </p>
+                    <p class="box size">
+                        <%= file.size %>
+                    </p>
+                    <div class="box options">
+                        <button>
+                            <span class="material-symbols-rounded">
+                                more_vert
+                            </span>
+                        </button>
+                    </div>
                 </a>
             <% }) %>
         </div>
     <% } else { %>
-        <h3>You don't have any files yet.</h3>
+        <div class="empty-files">
+            <h3>
+                <% if(filesInFolder) { %>
+                    This folder doesn't have any files.
+                <% } else { %>
+                    You don't have any files yet.
+                <% } %>
+            </h3>
+        </div>
     <% } %>
 </div>

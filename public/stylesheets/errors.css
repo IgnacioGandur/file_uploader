@@ -1,0 +1,22 @@
+.errors {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+    background-color: var(--color-error);
+    border: 1px solid var(--color-white-dimmed);
+
+    .title {
+        font-size: 1rem;
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    .error {
+        display: flex;
+        justify-content: center;
+
+        .message {
+            font-weight: 400;
+        }
+    }
+}
