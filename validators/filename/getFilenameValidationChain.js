@@ -1,12 +1,10 @@
 import { body } from "express-validator";
 import checkIfFilenameIsAvailable from "./custom-validators/checkIfFilenameIsAvailable.js";
-import checkIfUserSelectedFile from "../checkIfUserSelectedFile.js";
 
 function getFilenameValidationChain(fieldName, optional = false) {
     const regex = /^[\w\d_-]*$/;
 
     const validationChain = body(fieldName)
-        .custom(checkIfUserSelectedFile)
         .bail()
         .trim()
         .escape()

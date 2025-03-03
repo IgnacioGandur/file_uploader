@@ -7,6 +7,7 @@
         display: flex;
         border: var(--border);
         border-radius: calc(var(--button-border-radius) + 5px);
+        transition: var(--transition);
 
         .icon {
             display: flex;
@@ -28,6 +29,16 @@
             padding: var(--padding-small);
             font-size: var(--font-size-small);
             border: none;
+            transition: var(--transition);
+            outline: none;
+        }
+    }
+
+    .icon-and-input:hover,
+    .icon-and-input:has(input:focus-visible) {
+        border: 2px solid var(--color-main);
+        .icon {
+            border-right: 2px solid var(--color-main);
         }
     }
 }
@@ -52,4 +63,54 @@
 .button:hover,
 .button:focus-visible {
     border: var(--border-hovered);
+}
+
+.dialog {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: white;
+    background-color: transparent;
+    border: none;
+
+    .form {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap-small);
+        padding: var(--padding-average);
+        border-radius: var(--button-border-radius);
+        border: var(--border);
+
+        .buttons-container {
+            display: flex;
+            gap: var(--gap-small);
+
+            > * {
+                flex: 1;
+            }
+
+            button:disabled {
+                background-color: var(--color-light-gray);
+                border: 2px solid transparent;
+            }
+            button:disabled:hover {
+                pointer-events: none;
+                border: 2px solid transparent;
+            }
+        }
+
+        .warning-message {
+            font-weight: 900;
+            font-size: 0.75rem;
+            text-decoration: underline;
+            text-align: center;
+            color: var(--color-warning);
+        }
+    }
+}
+
+.dialog::backdrop {
+    background-color: var(--color-transparent-black);
 }

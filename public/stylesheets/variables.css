@@ -11,6 +11,10 @@
     --color-light-gray: #232323;
     --color-white-dimmed: #3d444d;
     --color-error: #78000055;
+    --color-transparent-black: #00000055;
+    --color-gray-link: #3d444d;
+    --color-light-gray: #ffffff99;
+    --color-warning: #ffb703;
     --font: "Roboto", serif;
     --font-size-small: 1rem;
     --font-size-medium: 1.5rem;
@@ -25,7 +29,6 @@
     --gap-average: 1em;
     --gap-big: 1.5em;
     --box-shadow: 0px 0px 15px 2px var(--color-main-dimmed);
-    --color-gray-link: #3d444d;
     --radial-gradient-1: radial-gradient(
         circle at center,
         var(--color-white-dimmed) 98%,
