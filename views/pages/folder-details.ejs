@@ -17,7 +17,7 @@
         />
         <link
             rel="stylesheet"
-            href="/stylesheets/file-folder-details.css"
+            href="/stylesheets/file-details.css"
         />
         <link
             rel="stylesheet"
@@ -31,6 +31,10 @@
             rel="stylesheet"
             href="/stylesheets/reusable-components.css"
         />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/errors.css"
+        />
         <link 
             rel="stylesheet" 
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" 
@@ -41,106 +45,133 @@
     </head>
     <body>
         <%- include("../partials/vertical-navbar.ejs") %> <% if(locals.folder) { %>
-        <%- include("../partials/errors.ejs", { errors: locals.validationErrors })  %>
         <main class="folder-details">
             <%- include("../partials/horizontal-navbar.ejs") %>
+            <%- include("../partials/errors.ejs", { errors: locals.validationErrors })  %>
             <div class="content">
-                <div class="wrapper">
-                    <h1 class="folder-name">
-                        <%= folder.name %>
-                    </h1>
-                    <div class="folder-icon">
-                        <span class="icon material-symbols-rounded">
+                <div class="top-wrapper">
+                    <div class="icon">
+                        <span class="material-symbols-rounded">
                             folder
                         </span>
                     </div>
-                    <div class="details-container">
-                        <div class="field created-at">
-                            <span class="icon material-symbols-rounded">
-                                history
-                            </span>
-                            <div class="vertical-separator"></div>
-                            <p>
-                                <%= folder.createdAt %>
-                            </p>
+                    <div class="name-and-details">
+                        <div class="name-and-buttons">
+                            <h2>
+                                <%= folder.name %>
+                            </h2>
+                            <div class="buttons">
+                                <button class="button show-update-dialog">
+                                    <span class="material-symbols-rounded">
+                                        edit
+                                    </span>
+                                </button>
+                                <button class="button delete-folder">
+                                    <span class="material-symbols-rounded">
+                                        delete
+                                    </span>
+                                </button>
+                            </div>
                         </div>
-                        <% if(folder.createdAt != folder.updatedAt) { %>
-                            <div class="field updated-at">
-                                <span class="icon material-symbols-rounded">
-                                    update
+                        <div class="details">
+                            <div class="detail">
+                                <span class="material-symbols-rounded">
+                                    history
+                                </span>
+                                <div class="vertical-separator"></div>
+                                <span>
+                                    Created at:
+                                </span>
+                                <p>
+                                    <%= folder.createdAt %>
+                                </p>
+                            </div>
+                            <% if(folder.createdAt !== folder.updatedAt) { %>
+                                <div class="horizontal-separator"></div>
+                                <div class="detail">
+                                    <span class="material-symbols-rounded">
+                                        update
+                                    </span>
+                                    <div class="vertical-separator"></div>
+                                    <p>
+                                        <%= folder.updatedAt %>
+                                    </p>
+                                </div>
+                            <% } %>
+                            <div class="horizontal-separator"></div>
+                            <div class="detail">
+                                <span class="material-symbols-rounded">
+                                    files
                                 </span>
                                 <div class="vertical-separator"></div>
                                 <p>
-                                    <%= folder.updatedAt %>
+                                    <%= folder.files.length %> <%= folder.files.length === 1 ? 'file' : 'files' %>.
                                 </p>
                             </div>
-                        <% } %>
-                        <div class="field files-length">
-                            <span class="icon material-symbols-rounded">
-                                files
-                            </span>
-                            <div class="vertical-separator"></div>
-                            <p>
-                                This folder has:
-                                <%= folder.files.length %> <%= folder.files.length === 1 ? 'file' : 'files' %>.
-                            </p>
                         </div>
-                        <form 
-                            action="/my-storage/update-folder/<%= folder.name %>"
-                            method="POST"
-                            class="update-folder-form"
-                        >
-                            <div class="input-field">
-                                <label for="updatedFolderName">
-                                    Update folder name
-                                </label>
-                                <div class="icon-and-input">
-                                    <div class="icon">
-                                        <span class="material-symbols-rounded">
-                                            folder
-                                        </span>
-                                    </div>
-                                    <input 
-                                        class="input"
-                                        type="text"
-                                        name="updatedFolderName"
-                                        id="updatedFolderName"
-                                        value="<%= folder.name %>"
-                                    >
-                                </div>
-                            </div>
-                            <button 
-                                class="button"
-                                type="submit"
+                    </div>
+                    <div class="details-container">
+                        <dialog class="dialog">
+                            <form 
+                                action="/my-storage/update-folder/<%= folder.name %>"
+                                method="POST"
+                                class="update-folder-form"
                             >
-                                Update
-                            </button>
-                        </form>
-                        <div class="buttons-container">
-                            <button class="button delete-folder">
-                                Delete
-                            </button>
-                            <dialog class="delete-folder-dialog">
-                                <form 
-                                    action="/my-storage/delete-folder/<%= folder.name %>" 
-                                    method="POST" 
-                                    class="delete-folder-form"
+                                <div class="input-field">
+                                    <label for="updatedFolderName">
+                                        Update folder name
+                                    </label>
+                                    <div class="icon-and-input">
+                                        <div class="icon">
+                                            <span class="material-symbols-rounded">
+                                                folder
+                                            </span>
+                                        </div>
+                                        <input 
+                                            class="input"
+                                            type="text"
+                                            name="updatedFolderName"
+                                            id="updatedFolderName"
+                                            value="<%= folder.name %>"
+                                        >
+                                    </div>
+                                </div>
+                                <button 
+                                    class="button"
+                                    type="submit"
                                 >
-                                    <p>
-                                        Delete "<%= folder.name %>" folder?
-                                    </p>
-                                    <span>
-                                        (This can't be undone)
-                                    </span>
-                                    <button type="submit">
+                                    Update
+                                </button>
+                            </form>
+                        </dialog>
+                        <dialog class="dialog delete-folder-dialog">
+                            <form 
+                                action="/my-storage/delete-folder/<%= folder.name %>" 
+                                method="POST" 
+                                class="form delete-folder-form"
+                            >
+                                <p>
+                                    Delete "<%= folder.name %>" folder?
+                                </p>
+                                <span>
+                                    (This can't be undone)
+                                </span>
+                                <div class="buttons-container">
+                                    <button 
+                                        class="button" 
+                                        type="submit"
+                                    >
                                         Delete
                                     </button>
-                                    <button class="button cancel-folder-delete" type="button">
+                                    <button 
+                                        class="button cancel-folder-delete" 
+                                        type="button"
+                                    >
                                         Cancel
                                     </button>
-                                </form>
-                            </dialog>
-                        </div>
+                                </div>
+                            </form>
+                        </dialog>
                         <% } %>
                     </div>
                 </div>

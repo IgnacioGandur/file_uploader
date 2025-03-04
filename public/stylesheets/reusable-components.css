@@ -43,6 +43,14 @@
     }
 }
 
+/*TODO: follow here.*/
+.vertical-separator {
+    min-width: 1px;
+    width: 1px;
+    height: 100%;
+    background-color: var(--color-gray-link);
+}
+
 .button {
     display: flex;
     align-items: center;

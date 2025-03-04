@@ -1,4 +1,5 @@
-.file-details {
+.file-details,
+.folder-details {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -19,6 +20,7 @@
             display: flex;
             position: relative;
             gap: var(--gap-average);
+            align-items: center;
 
             .icon {
                 display: flex;
@@ -31,12 +33,6 @@
                 }
             }
 
-            .vertical-separator {
-                background-image: var(--radial-gradient-1);
-                height: 100%;
-                width: 1px;
-            }
-
             .name-and-buttons {
                 display: flex;
                 flex-direction: column;
@@ -46,6 +42,48 @@
                 .buttons {
                     display: flex;
                     gap: var(--gap-average);
+
+                    .button {
+                        padding: var(--padding-small);
+                    }
+                }
+            }
+
+            .name-and-details {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: var(--gap-small);
+
+                .name-and-buttons {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .details {
+                    display: flex;
+                    gap: var(--gap-small);
+
+                    .horizontal-separator {
+                        width: 10px;
+                        height: 1px;
+                        background-image: var(--radial-gradient-1);
+                        align-self: center;
+                    }
+
+                    .detail {
+                        display: flex;
+                        align-items: center;
+                        gap: var(--gap-small);
+
+                        .vertical-separator {
+                            width: 1px;
+                            height: 100%;
+                            background-color: var(--color-gray-link);
+                        }
+                    }
                 }
             }
 
@@ -97,6 +135,92 @@
                     }
                 }
             }
+        }
+    }
+
+    .files {
+        padding: var(--padding-average);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap-average);
+
+        .title {
+            font-size: var(--font-size-medium);
+        }
+
+        .files-container {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(8, auto);
+            gap: var(--gap-small);
+            padding: var(--padding-big) 0.5em;
+            border: 1px solid var(--color-white-dimmed);
+            border-radius: 10px;
+
+            .header {
+                font-weight: 900;
+                text-transform: capitalize;
+            }
+
+            .file {
+                display: contents;
+                color: white;
+
+                .box {
+                    width: 100% !important;
+                    display: flex;
+                    align-items: center;
+                }
+
+                .box.icon {
+                    justify-content: center;
+
+                    span {
+                        font-size: 3rem;
+                        color: white;
+                    }
+                }
+
+                .box.files {
+                    justify-content: center;
+                }
+
+                .box.options {
+                    button {
+                        background-color: transparent;
+                        border: var(--border);
+                        border-radius: calc(var(--button-border-radius) / 2);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: var(--transition);
+                        cursor: pointer;
+
+                        span {
+                            color: white;
+                        }
+                    }
+
+                    button:hover,
+                    button:focus-visible {
+                        border: var(--border-hovered);
+                    }
+                }
+            }
+
+            .separator {
+                grid-column: 1 / -1;
+                height: 1px;
+                background-image: var(--radial-gradient-1);
+            }
+        }
+
+        .empty-files {
+            padding: 2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 }
