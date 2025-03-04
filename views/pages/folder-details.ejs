@@ -71,13 +71,15 @@
                                 name="updatedFolderName"
                                 id="updatedFolderName"
                                 value="<%= folder.name %>"
+                                placeholder="<%= folder.name %>"
                             >
                         </div>
                     </div>
                     <div class="buttons-container">
                         <button 
-                            class="button"
+                            class="button update-folder"
                             type="submit"
+                            disabled
                         >
                             Update
                         </button>
@@ -149,7 +151,7 @@
                                     history
                                 </span>
                                 <div class="vertical-separator"></div>
-                                <span>
+                                <span class="text-wrapper">
                                     Created at:
                                 </span>
                                 <p>
@@ -163,6 +165,9 @@
                                         update
                                     </span>
                                     <div class="vertical-separator"></div>
+                                    <span class="text-wrapper">
+                                        Updated at:
+                                    </span>
                                     <p>
                                         <%= folder.updatedAt %>
                                     </p>
@@ -174,6 +179,9 @@
                                     files
                                 </span>
                                 <div class="vertical-separator"></div>
+                                <span class="text-wrapper">
+                                    Files in folder:
+                                </span>
                                 <p>
                                     <%= folder.files.length %> <%= folder.files.length === 1 ? 'file' : 'files' %>.
                                 </p>

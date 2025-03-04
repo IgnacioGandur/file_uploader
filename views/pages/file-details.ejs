@@ -48,81 +48,6 @@
         <main class="file-details">
             <%- include ("../partials/horizontal-navbar.ejs") %>
             <%- include("../partials/errors.ejs", {errors: locals.validationErrors}) %>
-            <div class="content">
-                <div class="top-wrapper">
-                    <div class="icon">
-                        <span class="material-symbols-rounded">
-                            description
-                        </span>
-                    </div>
-                    <div class="name-and-buttons">
-                        <h2 class="filename">
-                            <%= file.name %><%= file.fileExtension %>
-                        </h2>
-                        <div class="buttons">
-                            <button class="button show-update-dialog">
-                                Update
-                            </button>
-                            <a 
-                                href="<%= file.cloudinary_url %>" 
-                                class="button"
-                            >
-                                Download
-                            </a>
-                        </div>
-                    </div>
-                    <button class="button delete-file">
-                        <span class="material-symbols-rounded">
-                            delete
-                        </span>
-                    </button>
-                </div>
-                <div class="properties">
-                    <p class="title">Properties</p>
-                    <div class="field mimetype">
-                        <span class="icon material-symbols-rounded">draft</span>
-                        <div class="vertical-separator"></div>
-                        <p>
-                            <span>
-                                Mimetype:
-                            </span>
-                            <%= file.mimetype %>
-                        </p>
-                    </div>
-                    <%  if(file.createdAt !== file.updatedAt) { %>
-                        <div class="field uploaded-at">
-                            <span class="icon material-symbols-rounded">history</span>
-                            <div class="vertical-separator"></div>
-                            <p>
-                                <span>
-                                    Uploaded at:
-                                </span>
-                                <%= file.uploadedAt %>
-                            </p>
-                        </div>
-                    <% } %>
-                    <div class="field updated-at">
-                        <span class="icon material-symbols-rounded">update</span>
-                        <div class="vertical-separator"></div>
-                        <p>
-                            <span>
-                                Updated at:
-                            </span>
-                            <%= file.updatedAt %>
-                        </p>
-                    </div>
-                    <div class="field size">
-                        <span class="icon material-symbols-rounded">weight</span>
-                        <div class="vertical-separator"></div>
-                        <p>
-                            <span>
-                                Size:
-                            </span>
-                            <%= file.size %>
-                        </p>
-                    </div>
-                </div>
-            </div>
             <dialog class="dialog delete-file-dialog">
                 <form
                     class="form delete-file-form"
@@ -190,6 +115,97 @@
                     </div>
                 </form>
             </dialog>
+            <div class="content">
+                <div class="top-wrapper">
+                    <div class="icon">
+                        <span class="material-symbols-rounded">
+                            description
+                        </span>
+                    </div>
+                    <div class="name-and-details">
+                        <div class="name-and-buttons">
+                            <h2>
+                                <%= file.name %>
+                            </h2>
+                            <div class="buttons">
+                                <button class="button show-update-dialog">
+                                    <span class="material-symbols-rounded">
+                                        edit
+                                    </span>
+                                </button>
+                                <a 
+                                    href="<%= file.cloudinary_url %>" 
+                                    class="button"
+                                >
+                                    <span class="material-symbols-rounded">
+                                        cloud_download
+                                    </span>
+                                </a>
+                                <button class="button delete-file">
+                                    <span class="material-symbols-rounded">
+                                        delete
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <div class="detail">
+                                <span class="material-symbols-rounded">
+                                    abc
+                                </span>
+                                <div class="vertical-separator"></div>
+                                <span class="text-wrapper">
+                                    Mimetype:
+                                </span>
+                                <p>
+                                    <%= file.mimetype %>
+                                </p>
+                            </div>
+                            <div class="horizontal-separator"></div>
+                            <div class="detail">
+                                <span class="material-symbols-rounded">
+                                    history
+                                </span>
+                                <div class="vertical-separator"></div>
+                                <span class="text-wrapper">
+                                    Uploaded at:
+                                </span>
+                                <p>
+                                    <%= file.uploadedAt %>
+                                </p>
+                            </div>
+                            <% if(file.uploadedAt !== file.updatedAt) { %>
+                                <div class="horizontal-separator"></div>
+                                <div class="detail">
+                                    <span class="material-symbols-rounded">
+                                        update
+                                    </span>
+                                    <div class="vertical-separator"></div>
+                                    <span class="text-wrapper">
+                                        Updated at:
+                                    </span>
+                                    <p>
+                                        <%= file.updatedAt %>
+                                    </p>
+                                </div>
+                            <% } %>
+                            <div class="horizontal-separator"></div>
+                            <div class="detail">
+                                <span class="material-symbols-rounded">
+                                    weight
+                                </span>
+                                <div class="vertical-separator"></div>
+                                <span class="text-wrapper">
+                                    Size:
+                                </span>
+                                <p>
+                                    <%= file.size %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </body>
 </html>
