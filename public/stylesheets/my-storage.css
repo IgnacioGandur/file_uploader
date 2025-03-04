@@ -69,9 +69,11 @@
         .folders-container {
             width: 100%;
             display: grid;
-            grid-template-columns: repeat(8, auto);
+            grid-template-columns: repeat(7, auto);
+            justify-content: space-between;
+            align-items: center;
             gap: var(--gap-small);
-            padding: var(--padding-big) 0.5em;
+            padding: 1em;
             border: 1px solid var(--color-white-dimmed);
             border-radius: 10px;
 
@@ -135,7 +137,7 @@
         }
 
         .folders-container {
-            grid-template-columns: repeat(6, auto);
+            grid-template-columns: repeat(5, auto);
         }
 
         .empty-files,
