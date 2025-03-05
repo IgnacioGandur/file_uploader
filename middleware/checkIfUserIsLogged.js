@@ -1,6 +1,6 @@
 function checkIfUserIsLogged(req, res, next) {
     if (req.isAuthenticated()) {
-        res.redirect("/");
+        res.redirect("/my-storage");
     } else {
         return next();
     }
