@@ -11,44 +11,154 @@
             rel="stylesheet"
             href="/stylesheets/index.css"
         />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/variables.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/register.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/errors.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/vertical-navbar.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/horizontal-navbar.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/footer.css"
+        />
         <link rel="icon" type="image/png" href="/icons/favicon-32x32.png" sizes="32x32" />
-        <link rel="icon" type="image/png" href="/icons/favicon-16x16.png" sizes="16x16" />
+        <link rel="icon"type="image/png" href="/icons/favicon-16x16.png" sizes="16x16" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <script defer src="/javascript/noTranslateGoogleIcons.js"></script>
+        <script defer src="/javascript/register/togglePasswordVisibility.js"></script>
     </head>
     <body>
         <%- include("../partials/vertical-navbar.ejs") %>
-        <%- include("../partials/errors.ejs", {errors: locals.validationErrors}) %>
-        <h1>Register</h1>
-        <form
-            action="/register"
-            method="POST"
-            class="register-form"
-        >
-            <label for="username">
-                Username:
-                <input
-                    type="text"
-                    name="username"
-                    id="username"
-                />
-            </label>
-            <label for="password">
-                Password
-                <input
-                    type="password"
-                    name="password"
-                    id="password"
-                />
-            </label>
-            <label for="confirm-password">
-                confirm-password
-                <input
-                    type="password"
-                    name="confirmPassword"
-                    id="confirm-password"
-                />
-            </label>
-            <button type="submit"> Register </button>
-        </form>
+        <main class="register">
+            <%- include("../partials/horizontal-navbar.ejs") %>
+            <%- include("../partials/errors.ejs", {errors: locals.validationErrors}) %>
+            <div class="content">
+                <div class="wrapper">
+                    <h1 class="title">Create an account</h1>
+                    <h2 class="sub-title">Enter a username and a password to create an account.</h2>
+                    <form
+                        class="register-form"
+                        action="/register"
+                        method="POST"
+                    >
+                        <div class="input-field">
+                            <label class="label" for="username">
+                                Username
+                            </label>
+                            <div class="icon-and-input">
+                                <label for="username">
+                                    <div class="icon">
+                                        <span class="material-symbols-rounded">
+                                            face
+                                        </span>
+                                    </div>
+                                </label>
+                                <input 
+                                    class="input"
+                                    type="text"
+                                    name="username"
+                                    id="username"
+                                    placeholder="John_Doe"
+                                    value="<%= locals.userInputs ? userInputs.username : '' %>"
+                                >
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <label for="password" class="label">
+                                Password
+                            </label>
+                            <div class="icon-and-input">
+                                <div class="icon">
+                                    <span class="material-symbols-rounded">
+                                        lock
+                                    </span>
+                                </div>
+                                <input
+                                    class="input"
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    placeholder="*********"
+                                    value="<%= locals.userInputs ? userInputs.password : '' %>"
+                                />
+                                <div class="icon show-password-icon">
+                                    <button 
+                                        type="button" 
+                                        class="button toggle-password-visibility"
+                                    >
+                                        <span class="material-symbols-rounded">
+                                            visibility_off
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <label for="confirm-password" class="label">
+                                Repeat password
+                            </label>
+                            <div class="icon-and-input">
+                                <div class="icon">
+                                    <span class="material-symbols-rounded">
+                                        lock_reset
+                                    </span>
+                                </div>
+                                <input
+                                    class="input"
+                                    type="password"
+                                    name="confirmPassword"
+                                    id="confirm-password"
+                                    placeholder="*********"
+                                    value="<%= locals.userInputs ? userInputs.confirmPassword : '' %>"
+                                />
+                                <div class="icon show-password-icon">
+                                    <button 
+                                        type="button" 
+                                        class="button toggle-password-visibility"
+                                    >
+                                        <span class="material-symbols-rounded">
+                                            visibility_off
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <button 
+                            class="button" 
+                            type="submit"
+                        >
+                            Register
+                        </button>
+                    </form>
+                    <div class="separator-message">
+                        <div class="line"></div>
+                        <div class="message">
+                            OR LOGIN IF YOU HAVE AN ACCOUNT
+                        </div>
+                    </div>
+                    <a 
+                        class="button login" 
+                        href="/login"
+                    >
+                        Login
+                    </a>
+                </div>
+            </div>
+            <%- include("../partials/footer.ejs") %>
+        </main>
     </body>
 </html>

@@ -24,10 +24,16 @@ const validateUserRegister = [
     validationChain,
     async (req, res, next) => {
         const validationErrors = validationResult(req);
+        const { username, password, confirmPassword } = req.body;
 
         if (!validationErrors.isEmpty()) {
             return res.status(422).render("pages/register", {
                 validationErrors: validationErrors.array(),
+                userInputs: {
+                    username: username,
+                    password: password,
+                    confirmPassword: confirmPassword,
+                },
             });
         }
 
