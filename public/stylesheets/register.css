@@ -20,8 +20,9 @@
             align-items: center;
             justify-content: center;
             gap: var(--gap-small);
-            padding: var(--padding-average);
+            padding: calc(var(--padding-big) * 2);
             border-radius: var(--button-border-radius);
+            border: var(--border);
 
             .title {
                 font-size: var(--font-size-medium);
@@ -136,9 +137,9 @@
             }
             .button.login {
                 width: 100%;
-                padding: var(--padding-big);
+                padding: var(--padding-average);
                 background-color: white;
-                font-weight: 900;
+                font-weight: 600;
                 color: black;
                 border: var(--border);
                 border-radius: var(--button-border-radius);
