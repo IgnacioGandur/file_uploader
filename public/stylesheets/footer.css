@@ -1,0 +1,22 @@
+.footer {
+    background-color: black;
+    width: 100%;
+    padding: var(--padding-average);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    border-top: 1px solid var(--color-white-dimmed);
+    gap: var(--gap-small);
+
+    .author {
+        display: flex;
+        align-items: center;
+    }
+
+    .vertical-separator {
+        height: 100%;
+        width: 1px;
+        background-image: var(--radial-gradient-1);
+    }
+}
