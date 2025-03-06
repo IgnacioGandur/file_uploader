@@ -24,10 +24,16 @@ const validateOriginalFilename = [
         const userFolder = await userFolderModel.getUserFolder(username);
 
         if (!validationErrors.isEmpty()) {
+            const { filename, folder, file } = req.body;
             return res.status(422).render("pages/my-storage", {
                 validationErrors: validationErrors.array(),
                 userFolder: userFolder,
                 files: userFolder.files,
+                userInputs: {
+                    filename: filename,
+                    folder: folder,
+                    file: file,
+                },
             });
         } else {
             return next();

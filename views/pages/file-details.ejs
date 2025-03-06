@@ -59,6 +59,9 @@
                     action="/my-storage/delete-file/<%= file.id %>"
                     method="POST"
                 >
+                    <h2>
+                        Delete File
+                    </h2>
                     <p>Are you sure you want to delete this file?</p>
                     <span class="warning-message">This can't be undone.</span>
                     <div class="buttons-container">
@@ -83,6 +86,9 @@
                     action="/my-storage/update-file/<%= file.id %>"
                     method="POST"
                 >
+                    <h2>
+                        Update File
+                    </h2>
                     <div class="input-field">
                         <label for="updated-filename">
                             Updated filename
@@ -133,12 +139,16 @@
                                 <%= file.name %>
                             </h2>
                             <div class="buttons">
-                                <button class="button show-update-dialog">
+                                <button 
+                                    title="Edit filename" 
+                                    class="button show-update-dialog"
+                                >
                                     <span class="material-symbols-rounded">
                                         edit
                                     </span>
                                 </button>
                                 <a 
+                                    title="Download file"
                                     href="<%= file.cloudinary_url %>" 
                                     class="button"
                                 >
@@ -146,7 +156,10 @@
                                         cloud_download
                                     </span>
                                 </a>
-                                <button class="button delete-file">
+                                <button 
+                                    title="Delete file" 
+                                    class="button delete-file"
+                                >
                                     <span class="material-symbols-rounded">
                                         delete
                                     </span>

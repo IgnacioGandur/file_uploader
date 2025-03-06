@@ -1,49 +1,60 @@
 .input-field {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-small);
+    gap: calc(var(--gap-small) / 2);
+
+    .label {
+        font-weight: 900;
+        font-size: var(--font-size-small);
+    }
 
     .icon-and-input {
         display: flex;
+        gap: var(--gap-small);
+        align-items: center;
+        border-radius: var(--button-border-radius);
         border: var(--border);
-        border-radius: calc(var(--button-border-radius) + 5px);
+        overflow: hidden;
+        padding: var(--padding-small);
         transition: var(--transition);
 
         .icon {
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: var(--padding-small);
-            border: none;
-            border-right: 2px solid var(--color-white-dimmed);
 
             span {
-                font-size: 2rem !important;
+                font-size: 2rem;
             }
         }
 
         .input {
+            height: 100%;
             width: 100%;
-            background-color: transparent;
-            color: white;
-            padding: var(--padding-small);
-            font-size: var(--font-size-small);
+            background-color: black;
             border: none;
-            transition: var(--transition);
+            color: white;
+            font-size: 1rem;
+            padding: var(--padding-average);
             outline: none;
+        }
+
+        .button {
+            border: 2px solid transparent;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 
-    .icon-and-input:hover,
-    .icon-and-input:has(input:focus-visible) {
-        border: 2px solid var(--color-main);
-        .icon {
-            border-right: 2px solid var(--color-main);
-        }
+    .icon-and-input:has(input:focus-visible),
+    .icon-and-input:hover {
+        border: var(--border-hovered);
     }
 }
 
-/*TODO: follow here.*/
 .vertical-separator {
     min-width: 1px;
     width: 1px;
@@ -74,9 +85,10 @@
 }
 
 .dialog {
+    width: 75%;
     top: 50%;
     left: 50%;
-    position: absolute;
+    position: fixed;
     transform: translate(-50%, -50%);
     color: white;
     background-color: transparent;
@@ -86,10 +98,34 @@
         background-color: black;
         display: flex;
         flex-direction: column;
-        gap: var(--gap-small);
-        padding: var(--padding-average);
+        gap: var(--gap-big);
+        padding: calc(var(--padding-big) * 2);
         border-radius: var(--button-border-radius);
         border: var(--border);
+
+        .rules {
+            display: flex;
+            flex-direction: column;
+            gap: var(--padding-small);
+            padding: var(--padding-average);
+            border: var(--border);
+            border-radius: var(--button-border-radius);
+            background-color: var(--color-green-dimmed);
+
+            .title {
+                font-weight: 900;
+            }
+
+            .wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: var(--gap-small);
+                padding: var(--padding-big);
+
+                li {
+                }
+            }
+        }
 
         .buttons-container {
             display: flex;
@@ -109,6 +145,59 @@
             }
         }
 
+        .folders-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap-small);
+
+            .folders {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: var(--gap-average);
+
+                .radio-button.option {
+                    flex: 1;
+                    width: fit-content;
+                    padding: var(--padding-average);
+                    border-radius: var(--button-border-radius);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: var(--border);
+                    position: relative;
+                    transition: var(--transition);
+
+                    input {
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        opacity: 0;
+                    }
+
+                    label {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        gap: var(--gap-small);
+
+                        .icon {
+                            font-size: 3rem;
+                        }
+                    }
+                }
+
+                .radio-button.option:has(input[type="radio"]:checked) {
+                    border: var(--border-hovered);
+                }
+            }
+        }
+
         .warning-message {
             font-weight: 900;
             font-size: 0.75rem;
@@ -116,9 +205,61 @@
             text-align: center;
             color: var(--color-warning);
         }
+
+        .buttons {
+            display: flex;
+            gap: var(--gap-average);
+
+            > * {
+                flex: 1;
+            }
+
+            .upload-file-input {
+                padding: var(--padding-average);
+                border: var(--border);
+                border-radius: var(--button-border-radius);
+                transition: var(--transition);
+            }
+
+            .upload-file-input:hover,
+            .upload-file-input:focus-visible {
+                border: var(--border-hovered);
+            }
+
+            .upload-file-input::file-selector-button {
+                background-color: transparent;
+                color: white;
+                border: none;
+                font-weight: 700;
+            }
+
+            .cancel-file-upload {
+                position: absolute;
+                top: var(--padding-big);
+                right: var(--padding-big);
+            }
+        }
+    }
+}
+
+.dialog.create-folder-dialog {
+    width: 50%;
+}
+.dialog.delete-file-dialog,
+.dialog.update-file-dialog,
+.dialog.update-folder-dialog,
+.dialog.delete-folder-dialog {
+    width: 25%;
+
+    .form {
+        padding: var(--padding-big);
+
+        .buttons-container {
+            gap: var(--gap-average);
+        }
     }
 }
 
 .dialog::backdrop {
-    background-color: var(--color-transparent-black);
+    background-color: #00000099;
 }

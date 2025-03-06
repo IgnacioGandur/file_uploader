@@ -12,10 +12,14 @@ const validateFolderName = [
         const validationErrors = validationResult(req);
 
         if (!validationErrors.isEmpty()) {
+            const { folderName } = req.body;
             return res.status(422).render("pages/my-storage", {
                 validationErrors: validationErrors.array(),
                 userFolder: userFolder,
                 files: userFolder.files,
+                userInputs: {
+                    folderName: folderName,
+                },
             });
         } else {
             return next();

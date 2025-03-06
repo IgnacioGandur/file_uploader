@@ -16,8 +16,6 @@ body {
 
 body {
     display: flex;
-    /*flex-direction: column;*/
-    /*gap: 1em;*/
     font-family: var(--font);
 }
 

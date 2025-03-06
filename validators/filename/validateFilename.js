@@ -17,10 +17,15 @@ const validateFilename = [
         const userFolder = await userFolderModel.getUserFolder(username);
 
         if (!validationErrors.isEmpty()) {
+            const { filename, folder } = req.body;
             return res.status(422).render("pages/my-storage", {
                 validationErrors: validationErrors.array(),
                 userFolder: userFolder,
                 files: userFolder.files,
+                userInputs: {
+                    filename: filename,
+                    folder: folder,
+                },
             });
         } else {
             return next();

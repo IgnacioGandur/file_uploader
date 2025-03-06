@@ -7,57 +7,119 @@
             </span>
             Upload file
         </button>
-        <dialog class="upload-file-dialog">
+        <dialog class="dialog upload-file-dialog">
             <form 
+                class="form upload-file-form"
                 action="/my-storage/upload-file" 
                 method="post"
                 enctype="multipart/form-data"
-                class="upload-file-form"
             >
-                <label for="filename">
-                    Filename
-                    (leave blank to use current filename)
-                    <input 
-                        type="text" 
-                        name="filename" 
-                        id="filename"
+                <h2>
+                    Upload File
+                </h2>
+                <ul class="rules">
+                    <h3 class="title">
+                        Please make sure the file complies with the following rules
+                    </h3>
+                    <div class="wrapper">
+                        <li>
+                            Size limit is 5MB
+                        </li>
+                        <li>
+                            Filename should be 30 characters max
+                        </li>
+                        <li>
+                            Only characters allowed are letters, numbers and hyphens ("-", "_")
+                        </li>
+                        <li>
+                            One file MUST be selected
+                        </li>
+                        <li>
+                            You can't have two files with the same name
+                        </li>
+                        <li>
+                            You don't have to provide the file extension
+                        </li>
+                    </div>
+                </ul>
+                <div class="input-field">
+                    <label 
+                        class="label" 
+                        for="filename"
                     >
-                </label>
+                        Filename
+                        <span>
+                            (leave blank to use original filename)
+                        </span>
+                    </label>
+                    <div class="icon-and-input">
+                        <label for="filename">
+                            <div class="icon">
+                                <span class="material-symbols-rounded">
+                                    abc
+                                </span>
+                            </div>
+                        </label>
+                        <input 
+                            class="input"
+                            type="text"
+                            name="filename"
+                            id="filename"
+                            value="<%= locals.userInputs ? userInputs.filename : '' %>"
+                            placeholder="new_file_name"
+                        />
+                    </div>
+                </div>
                 <% if(locals.userFolder.folders.length > 0)  { %>
-                    <div class="folders">
-                        Save file in folder?
-                        <% userFolder.folders.forEach((folder) => { %>
-                            <div class="option">
-                                <label for="<%= folder.name %>">
-                                    <%= folder.name %>
+                    <div class="folders-section">
+                        <p class="label">
+                            Save file in folder?
+                            <span>
+                                (Leave unmarked to not save the file in a folder)
+                            </span>
+                        </p>
+                        <div class="folders">
+                            <% userFolder.folders.forEach((folder) => { %>
+                                <div class="radio-button option">
+                                    <label for="<%= folder.name %>">
+                                        <span class="icon material-symbols-rounded">
+                                            folder
+                                        </span>
+                                        <span class="text">
+                                            <%= folder.name %>
+                                        </span>
+                                    </label>
                                     <input
                                         type="radio"
                                         name="folder"
                                         id="<%= folder.name %>"
                                         value="<%= folder.id %>"
+                                        <%= locals.userInputs ? (userInputs.folder == folder.id ? 'checked' : '' ) : '' %>
                                     >
-                                </label>
-                            </div>
-                        <% }) %>
+                                </div>
+                            <% }) %>
+                        </div>
                     </div>
                 <% } %>
-                <label for="file">
-                    File:
+                <div class="buttons">
                     <input 
+                        class="option upload-file-input"
                         type="file" 
                         name="file" 
                         id="file"
                     >
-                </label>
-                <button type="submit">
-                    Upload
-                </button>
-                <button 
-                    class="cancel-file-upload" 
-                    type="button"
-                >
-                    Cancel
-                </button>
+                    <button type="submit">
+                        Upload
+                    </button>
+                    <button 
+                        class="cancel-file-upload" 
+                        type="button"
+                    >
+                        <span class="material-symbols-rounded">
+                            close
+                        </span>
+                    </button>
+                </div>
             </form>
         </dialog>
         <button class="create-folder">
@@ -66,27 +128,68 @@
             </span>
             Create folder
         </button>
-        <dialog class="create-folder-dialog">
+        <dialog class="dialog create-folder-dialog">
             <form 
-                class="create-folder-form" 
+                class="form create-folder-form" 
                 action="/my-storage/create-folder" 
                 method="POST" 
             >
-                <label for="folderName">
-                    Folder Name
-                    <input 
-                        type="text"
-                        name="folderName"
-                        id="folderName"
+                <h2>
+                    Create Folder
+                </h2>
+                <div class="rules">
+                    <h3 class="title">
+                        Please make sure the folder name complies with the following rules
+                    </h3>
+                    <ul class="wrapper">
+                        <li>
+                            Folder name can't be empty
+                        </li>
+                        <li>
+                            Folder name must be up to 30 characters max
+                        </li>
+                        <li>
+                            Should only contain letters, numbers and hyphens("-", "_")
+                        </li>
+                        <li>
+                            Can't have two folders with the same name
+                        </li>
+                    </ul>
+                </div>
+                <div class="input-field">
+                    <label for="folderName">
+                        Folder name
+                    </label>
+                    <div class="icon-and-input">
+                        <div class="icon">
+                            <span class="material-symbols-rounded">
+                                folder
+                            </span>
+                        </div>
+                        <input 
+                            class="input"
+                            type="text"
+                            name="folderName"
+                            id="folderName"
+                            placeholder="my_folder"
+                            value="<%= locals.userInputs ? userInputs.folderName : '' %>"
+                        >
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button 
+                        class="button" 
+                        type="submit"
+                        >
+                        Create folder
+                    </button>
+                    <button 
+                        class="cancel-folder-creation"
+                        type="button"
                     >
-                </label>
-                <button type="submit">Create folder</button>
-                <button 
-                    class="cancel-folder-creation"
-                    type="button"
-                >
-                    Cancel
-                </button>
+                        Cancel
+                    </button>
+                </div>
             </form>
         </dialog>
     </div>
