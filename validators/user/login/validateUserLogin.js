@@ -21,12 +21,17 @@ const validateUserLogin = [
     validationChain,
     async (req, res, next) => {
         const { username } = req.query;
+        const { username: inputUsername, password } = req.body;
         const validationErrors = validationResult(req);
 
         if (!validationErrors.isEmpty()) {
             return res.status(422).render("pages/login", {
                 username: username,
                 validationErrors: validationErrors.array(),
+                userInputs: {
+                    username: inputUsername,
+                    password: password,
+                },
             });
         } else {
             return next();

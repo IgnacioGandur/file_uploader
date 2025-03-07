@@ -17,6 +17,10 @@
         />
         <link
             rel="stylesheet"
+            href="/stylesheets/reusable-components.css"
+        />
+        <link
+            rel="stylesheet"
             href="/stylesheets/register.css"
         />
         <link
@@ -57,7 +61,10 @@
                     >
                         <div class="input-field">
                             <label class="label" for="username">
-                                Username
+                                Username 
+                                <span class="detail">
+                                    (30 characters max)
+                                </span>
                             </label>
                             <div class="icon-and-input">
                                 <label for="username">
@@ -74,6 +81,9 @@
                                     id="username"
                                     placeholder="John_Doe"
                                     value="<%= locals.userInputs ? userInputs.username : '' %>"
+                                    minlength="1"
+                                    maxlength="30"
+                                    required
                                 >
                             </div>
                         </div>
@@ -95,7 +105,9 @@
                                     name="password"
                                     id="password"
                                     placeholder="*********"
+                                    minlength="1"
                                     value="<%= locals.userInputs ? userInputs.password : '' %>"
+                                    required
                                 />
                                 <div class="icon show-password-icon">
                                     <button 
@@ -127,7 +139,9 @@
                                     name="confirmPassword"
                                     id="confirm-password"
                                     placeholder="*********"
+                                    minlength="1"
                                     value="<%= locals.userInputs ? userInputs.confirmPassword : '' %>"
+                                    required
                                 />
                                 <div class="icon show-password-icon">
                                     <button 

@@ -6,7 +6,7 @@ const loginController = {
         });
     },
 
-    loginPost: async (req, res) => {
+    loginPost: async (_, res) => {
         res.redirect("/");
     },
 };

@@ -6,6 +6,11 @@
     .label {
         font-weight: 900;
         font-size: var(--font-size-small);
+
+        .detail {
+            font-size: 0.75rem;
+            color: #ffffff99;
+        }
     }
 
     .icon-and-input {
@@ -47,12 +52,39 @@
             align-items: center;
             justify-content: center;
         }
+
+        .show-password-icon {
+            .toggle-password-visibility {
+                background-color: transparent;
+                border: 1px solid transparent;
+                padding: 0;
+                color: white;
+            }
+        }
     }
 
     .icon-and-input:has(input:focus-visible),
     .icon-and-input:hover {
         border: var(--border-hovered);
     }
+}
+
+.label {
+    font-weight: 900;
+    font-size: var(--font-size-small);
+
+    .detail {
+        font-size: 0.75rem;
+        color: #ffffff99;
+    }
+}
+
+.input-field:has(input[type="text"]:user-invalid) > .icon-and-input {
+    border: 1px solid var(--color-red);
+}
+
+.input-field:has(input[type="text"]:user-valid) > .icon-and-input {
+    border: 1px solid var(--color-green);
 }
 
 .vertical-separator {
@@ -121,9 +153,6 @@
                 flex-direction: column;
                 gap: var(--gap-small);
                 padding: var(--padding-big);
-
-                li {
-                }
             }
         }
 
