@@ -5,6 +5,7 @@ import registerRouter from "./registerRouter.js";
 import loginRouter from "./loginRouter.js";
 import logoutRouter from "./logoutRouter.js";
 import myStorageRouter from "./myStorageRouter.js";
+import pageNotFoundRouter from "./pageNotFoundRouter.js";
 
 // Middleware;
 import allowIfLogged from "../middleware/allowIfLogged.js";
@@ -22,5 +23,6 @@ router.use("/register", checkIfUserIsLogged, registerRouter);
 router.use("/login", checkIfUserIsLogged, loginRouter);
 router.use("/logout", logoutRouter);
 router.use("/my-storage", allowIfLogged, myStorageRouter);
+router.use("*", pageNotFoundRouter);
 
 export default router;
