@@ -1,4 +1,4 @@
-import formatBytes from "../../../utilities/formatBytes.js";
+import formatBytes from "../../../../utilities/formatBytes.js";
 
 function validateFileSize(_, { req }) {
     const { size } = req.file;
@@ -11,7 +11,6 @@ function validateFileSize(_, { req }) {
 
     // 5MB limit.
     if (size > 5e6) {
-        console.log("file is above 5mb.");
         throw new Error(
             `File size must be up to 5MB max. The size of the file you are trying to upload is ${formatBytes(size, 2)}.`,
         );

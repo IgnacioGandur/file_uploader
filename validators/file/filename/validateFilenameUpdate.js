@@ -1,8 +1,8 @@
 import { validationResult } from "express-validator";
-import fileModel from "../../db/prisma/models/file.js";
+import fileModel from "../../../db/prisma/models/file.js";
 import getFilenameValidationChain from "./getFilenameValidationChain.js";
-import formatBytes from "../../utilities/formatBytes.js";
-import formatDate from "../../utilities/formatDate.js";
+import formatBytes from "../../../utilities/formatBytes.js";
+import formatDate from "../../../utilities/formatDate.js";
 
 const validationChain = getFilenameValidationChain("updatedFilename");
 

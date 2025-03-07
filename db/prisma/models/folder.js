@@ -135,11 +135,6 @@ class FolderModel {
                 },
             });
 
-            console.log(
-                "the content of result in prisma when checking if the folder exists by id is:",
-                result,
-            );
-
             if (result) {
                 return true;
             } else {

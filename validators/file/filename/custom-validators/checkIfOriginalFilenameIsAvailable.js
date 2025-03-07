@@ -1,10 +1,7 @@
-import fileModel from "../../../db/prisma/models/file.js";
+import fileModel from "../../../../db/prisma/models/file.js";
 
-// FIX: This allways get executed when uploading a file, make sure only happens when no filename is provided.
-
-// This checks if the original filename is available when no new filename is provided to the file.
 async function checkIfOriginalFilenameIsAvailable(_, { req }) {
-    if (req.body.filename === undefined) {
+    if (!req.body.filename) {
         const { username } = req.user;
         const { originalname } = req.file;
 

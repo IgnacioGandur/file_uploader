@@ -2,9 +2,7 @@ import { v2 as cloudinary } from "cloudinary";
 
 const cloudinaryInteractions = {
     createUserFolder: (username) => {
-        cloudinary.api
-            .create_folder(username)
-            .then((result) => console.log(result));
+        cloudinary.api.create_folder(username);
     },
 
     uploadFile: (fileBuffer, public_id, folder) => {
