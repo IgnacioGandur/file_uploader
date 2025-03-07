@@ -29,9 +29,6 @@ const uploadFileController = {
             uploadResult.public_id,
         );
 
-        console.log("The content of  cloudinary upload is:", uploadResult);
-        console.log("The content of  prisma upload is:", prismaResult);
-
         res.redirect("/my-storage");
     },
 };

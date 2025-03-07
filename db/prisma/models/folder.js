@@ -125,6 +125,33 @@ class FolderModel {
             );
         }
     }
+
+    async checkIfFolderExistsById(username, folderId) {
+        try {
+            const result = await this.prisma.folder.findUnique({
+                where: {
+                    id: Number(folderId),
+                    userFolderName: username,
+                },
+            });
+
+            console.log(
+                "the content of result in prisma when checking if the folder exists by id is:",
+                result,
+            );
+
+            if (result) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            console.error("Prisma error:", error.message);
+            throw new Error(
+                "Something went wrong when trying to check if the folder exists by it's id.",
+            );
+        }
+    }
 }
 
 export default new FolderModel(prisma);

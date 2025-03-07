@@ -3,6 +3,7 @@ import { validationResult } from "express-validator";
 import userFolderModel from "../../db/prisma/models/userFolder.js";
 import validateFileSize from "./custom-validators/validateFileSize.js";
 import checkIfUserSelectedFile from "../checkIfUserSelectedFile.js";
+import validateFolderWhenUploadingFile from "../file/folder/validateFolderWhenUploadingFile.js";
 
 const validationChain = getFilenameValidationChain("filename", true);
 
@@ -11,6 +12,7 @@ const validateFilename = [
         .custom(checkIfUserSelectedFile)
         .bail()
         .custom(validateFileSize),
+    validateFolderWhenUploadingFile,
     async (req, res, next) => {
         const { username } = req.user;
         const validationErrors = validationResult(req);
