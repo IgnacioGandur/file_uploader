@@ -1,0 +1,198 @@
+.about {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .content {
+        flex: 1;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: calc(2 * var(--gap-big));
+        padding: var(--padding-big);
+
+        .header {
+            align-self: center;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: var(--gap-small);
+
+            .icon {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        .sub-header {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap-small);
+            align-self: start;
+            padding: var(--padding-big);
+        }
+
+        .tools {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap-average);
+            padding: var(--padding-big);
+
+            .container {
+                flex: 1;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+                justify-content: center;
+                gap: var(--gap-average);
+                overflow: hidden;
+
+                .tool {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: start;
+                    align-items: center;
+                    text-align: center;
+                    gap: var(--gap-average);
+                    /*border: var(--border);*/
+                    border: 1px solid var(--color-white-dimmed);
+                    padding: var(--padding-big);
+                    opacity: 0;
+                    transition: var(--transition);
+                    animation: appearTool 1s ease-in-out forwards;
+                    cursor: pointer;
+                    background-size: 400%;
+                    background-position: bottom left;
+                    text-decoration: none;
+                    color: white;
+
+                    > * {
+                        height: 100%;
+                        width: 100%;
+                    }
+
+                    .icon-wrapper {
+                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        position: relative;
+
+                        .icon {
+                            width: 75px;
+                            height: 75px;
+                        }
+
+                        .icon:first-of-type {
+                            transform: translatey(0px);
+                            animation: float 6s ease-in-out infinite;
+                            animation-play-state: paused;
+                        }
+
+                        .icon:last-of-type {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            opacity: 1;
+                        }
+                    }
+
+                    .description {
+                        text-align: center;
+                        align-self: end;
+                    }
+                }
+
+                .tool:hover > .icon-wrapper > .icon:first-of-type {
+                    animation-play-state: running;
+                }
+
+                .tool:hover > .icon-wrapper > .icon:last-of-type {
+                    animation: appearIcon 400ms ease-in-out forwards;
+                }
+
+                .tool:nth-child(odd) {
+                    animation: appearToolBackwards 1s ease-in-out forwards;
+                }
+
+                .tool:hover {
+                    /*filter: grayscale(0%);*/
+                    background-position: top right;
+
+                    .icon {
+                        animation-play-state: running;
+                    }
+                }
+            }
+        }
+
+        .author {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap-small);
+            padding: var(--padding-big);
+            align-items: center;
+        }
+    }
+}
+
+@keyframes appearTool {
+    0% {
+        transform: translate(0, -100%);
+    }
+    50% {
+        transform: translate(0, 20%);
+    }
+    75% {
+        transform: translate(0, -10%);
+    }
+    100% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes appearToolBackwards {
+    0% {
+        transform: translate(0, 100%);
+    }
+    50% {
+        transform: translate(0, -20%);
+    }
+    75% {
+        transform: translate(0, 10%);
+    }
+    100% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0% {
+        /*box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);*/
+        transform: translatey(0px);
+    }
+    50% {
+        /*box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);*/
+        transform: translatey(-20px);
+    }
+    100% {
+        /*box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);*/
+        transform: translatey(0px);
+    }
+}
+
+@keyframes appearIcon {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+}

@@ -18,7 +18,8 @@
         gap: var(--gap-small);
         align-items: center;
         border-radius: var(--button-border-radius);
-        border: var(--border);
+        /*border: var(--border);*/
+        border: 2px solid var(--color-white-dimmed);
         overflow: hidden;
         padding: var(--padding-small);
         transition: var(--transition);
@@ -65,7 +66,8 @@
 
     .icon-and-input:has(input:focus-visible),
     .icon-and-input:hover {
-        border: var(--border-hovered);
+        /*border: var(--border-hovered);*/
+        border: 2px solid var(--color-main);
     }
 }
 
@@ -80,11 +82,11 @@
 }
 
 .input-field:has(input[type="text"]:user-invalid) > .icon-and-input {
-    border: 1px solid var(--color-red);
+    border: 2px solid var(--color-red);
 }
 
 .input-field:has(input[type="text"]:user-valid) > .icon-and-input {
-    border: 1px solid var(--color-green);
+    border: 2px solid var(--color-green);
 }
 
 .vertical-separator {
@@ -193,7 +195,8 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    border: var(--border);
+                    /*border: var(--border);*/
+                    border: 2px solid var(--color-white-dimmed);
                     position: relative;
                     transition: var(--transition);
 
@@ -222,7 +225,8 @@
                 }
 
                 .radio-button.option:has(input[type="radio"]:checked) {
-                    border: var(--border-hovered);
+                    /*border: var(--border-hovered);*/
+                    border: 2px solid var(--color-main);
                 }
             }
         }
@@ -252,7 +256,8 @@
 
             .upload-file-input:hover,
             .upload-file-input:focus-visible {
-                border: var(--border-hovered);
+                /*border: var(--border-hovered);*/
+                border: 2px solid var(--color-main);
             }
 
             .upload-file-input::file-selector-button {

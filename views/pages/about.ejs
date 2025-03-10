@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>About | File Uploader</title>
+        <link
+            rel="stylesheet"
+            href="/stylesheets/index.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/about.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/variables.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/vertical-navbar.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/horizontal-navbar.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/stylesheets/footer.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            href="/icons/favicon-32x32.png"
+            sizes="32x32"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            href="/icons/favicon-16x16.png"
+            sizes="16x16"
+        />
+        <meta name="author" content="Ignacio Gandur">
+        <meta name="description" content="File Uploader App">
+        <meta name="keywords" content="file, files, folder, folders, uploader, storage, cloud">
+    </head>
+    <body>
+        <%- include("../partials/vertical-navbar.ejs") %>
+        <main class="about">
+            <%- include("../partials/horizontal-navbar.ejs") %>
+            <div class="content">
+                <header class="header">
+                    <img 
+                        class="icon" 
+                        src="/icons/icon.png" 
+                        alt="Website icon"
+                    >
+                    <h1 class="title">File Uploader</h1>
+                </header>
+                <div class="sub-header">
+                    <h2 class="title">
+                        🎯 Project's Goal
+                    </h2>
+                    <p>
+                        This website was created as a part of The Odin Project course. The main goal of this project was to learn about Prisma ORM, a tool designed to make interactions with databases easier.
+                    </p>
+                </div>
+                <div class="tools">
+                    <h2 class="title">
+                        🚀 The Tools Used To Create This Project
+                    </h2>
+                    <div class="container">
+                        <% tools.forEach((tool, index) => { %>
+                            <a 
+                                style="background-image:linear-gradient(45deg, transparent, transparent, transparent,  transparent, <%= tool.color %>, <%= tool.color %>, <%= tool.color %>, <%= tool.color %> ); animation-delay: <%= index %>00ms" 
+                                class="tool" 
+                                target="about_blank"
+                                href="<%= tool.link %>"
+                            >
+                                <h3>
+                                    <%= tool.name %>
+                                </h3>
+                                <div class="icon-wrapper">
+                                    <%- tool.icon %>
+                                    <%- tool.icon %>
+                                </div>
+                                <p class="description">
+                                    <%= tool.description %>
+                                </p>
+                            </a>
+                        <% }) %>
+                    </div>
+                </div>
+                <div class="author">
+                    <h2>  ✍🏻Author</h2>
+                    <p>Made by Ignacio Gandur 🇦🇷 with 🤍 for The Odin Project</p>
+                </div>
+            </div>
+            <%- include("../partials/footer.ejs") %>
+        </main>
+    </body>
+</html>

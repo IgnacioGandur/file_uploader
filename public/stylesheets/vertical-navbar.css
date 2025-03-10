@@ -28,6 +28,7 @@
         position: relative;
         transition: var(--transition);
         border-radius: calc(var(--button-border-radius) / 2);
+        border: 2px solid transparent;
 
         .icon {
             font-size: 1.75rem;
@@ -54,6 +55,7 @@
 
     .link.active {
         background-color: var(--color-main);
+        border: 2px solid white;
 
         .icon {
             font-variation-settings: "FILL" 1;
@@ -63,10 +65,12 @@
     .link:hover,
     .link:focus-visible {
         background-color: var(--color-main);
+        border: 2px solid white;
 
         .text {
             left: 110%;
             opacity: 1;
+            border: 2px solid white;
         }
 
         .icon {

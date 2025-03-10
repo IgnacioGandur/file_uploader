@@ -4,8 +4,9 @@
     --color-dark-gray: #1f1f2d;
     --button-border-radius: 10px;
     --transition: all 200ms ease-in-out;
-    --color-main: #00e0ff;
+    /*--color-main: #00e0ff;*/
     --color-main-dimmed: #3d444d;
+    --color-main: #7752fe;
     --color-white: #ffffff;
     --color-dark-background: #181818;
     --color-light-gray: #232323;
@@ -23,9 +24,9 @@
     --font-size-small: 1rem;
     --font-size-medium: 1.5rem;
     --font-size-big: 2rem;
-    --border-transparent: 2px solid transparent;
-    --border: 1px solid var(--color-white-dimmed);
-    --border-hovered: 1px solid var(--color-main);
+    --border-transparent: 1px solid transparent;
+    --border: 2px solid var(--color-white-dimmed);
+    --border-hovered: 2px solid var(--color-main);
     --padding-small: 0.3em;
     --padding-average: 0.75em;
     --padding-big: 1.25em;
