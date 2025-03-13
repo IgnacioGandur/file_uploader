@@ -44,6 +44,32 @@
     ];
 %>
 
+<nav class="mobile-vertical-navbar">
+    <% links.forEach((link) => { %>
+        <% const isActive = locals.activeLink === link.href  || (link.href !== '/' && locals.activeLink.startsWith(link.href)); %>
+        <a 
+            class="link <%= link.text === 'Logout' ? 'logout' : '' %> <%= isActive ? 'active' : '' %>"
+            href="<%= link.href %>"
+            <%= link.text === "Github repo" ? "target='about_blank'" : "" %>
+        >
+            <span class="icon material-symbols-rounded">
+                <%= link.icon %>
+            </span>
+            <span class="text">
+                <%= link.text %>
+            </span>
+        </a>
+    <% }) %>
+    <button class="link hide-mobile-navbar">
+        <span class="icon material-symbols-rounded">
+            close
+        </span>
+        <span class="text">
+            Close menu
+        </span>
+    </button>
+</nav>
+
 <nav class="vertical-navbar">
     <% links.forEach((link) => { %>
         <% const isActive = locals.activeLink === link.href  || (link.href !== '/' && locals.activeLink.startsWith(link.href)); %>

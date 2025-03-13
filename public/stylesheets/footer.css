@@ -20,3 +20,15 @@
         background-image: var(--radial-gradient-1);
     }
 }
+
+@media screen and (max-width: 1000px) {
+    .footer {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .footer {
+        display: none;
+    }
+}

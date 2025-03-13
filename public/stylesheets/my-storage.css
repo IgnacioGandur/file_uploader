@@ -153,3 +153,90 @@
         }
     }
 }
+
+@media screen and (max-width: 1000px) {
+    .files,
+    .folders {
+        .files-container,
+        .folders-container {
+            grid-template-columns: repeat(5, auto) !important;
+            justify-items: space-between;
+
+            /*.header.extension,*/
+            /*.header.mimetype,*/
+            .header.uploaded-at,
+            .header.updated-at,
+            .header.created-at,
+            .box.created-at,
+            /*.box.extension,*/
+            /*.box.mimetype,*/
+            .box.uploaded-at,
+            .box.updated-at {
+                display: none !important;
+            }
+        }
+
+        .folders-container {
+            grid-template-columns: repeat(3, auto) !important;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .my-storage {
+        .header {
+            flex-direction: column;
+            align-items: stretch;
+            gap: var(--gap-small);
+
+            h1 {
+                width: 100%;
+                text-align: start;
+            }
+
+            .buttons {
+                width: 100%;
+                flex-direction: column;
+                gap: var(--gap-small);
+
+                button {
+                    display: flex;
+                    justify-content: start;
+                    flex-direction: row-reverse;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: var(--gap-small);
+
+                    span.icon {
+                        font-weight: 300 !important;
+                    }
+                }
+
+                > * {
+                    width: 100%;
+                }
+            }
+        }
+
+        .files,
+        .folders {
+            .files-container,
+            .folders-container {
+                grid-template-columns: repeat(3, auto) !important;
+
+                .header.extension,
+                .header.mimetype,
+                .header.uploaded-at,
+                .header.updated-at,
+                .header.created-at,
+                .box.created-at,
+                .box.extension,
+                .box.mimetype,
+                .box.uploaded-at,
+                .box.updated-at {
+                    display: none !important;
+                }
+            }
+        }
+    }
+}

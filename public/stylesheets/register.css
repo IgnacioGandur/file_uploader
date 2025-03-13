@@ -64,7 +64,7 @@
                 .message {
                     color: #ffffff99;
                     background-color: black;
-                    z-index: 100;
+                    z-index: 50;
                     padding: var(--padding-small);
                 }
             }
@@ -91,4 +91,30 @@
 .button:hover,
 .button:focus-visible {
     border: var(--border-hovered) !important;
+}
+
+@media screen and (max-width: 1000px) {
+    .register {
+        .content {
+            .wrapper {
+                border: none;
+                padding: var(--padding-big);
+                justify-content: center;
+                gap: var(--gap-big);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .register {
+        .content {
+            .wrapper {
+                border: none;
+                padding: var(--padding-big);
+                justify-content: center;
+                gap: var(--gap-big);
+            }
+        }
+    }
 }

@@ -31,72 +31,6 @@
                 color: #ffffff99;
             }
 
-            /*.input-field {*/
-            /*    display: flex;*/
-            /*    flex-direction: column;*/
-            /*    gap: calc(var(--gap-small) / 2);*/
-            /**/
-            /*    .label {*/
-            /*        font-weight: 900;*/
-            /*        font-size: var(--font-size-small);*/
-            /*    }*/
-            /**/
-            /*    .icon-and-input {*/
-            /*        display: flex;*/
-            /*        gap: var(--gap-small);*/
-            /*        align-items: center;*/
-            /*        border-radius: var(--button-border-radius);*/
-            /*        border: var(--border);*/
-            /*        overflow: hidden;*/
-            /*        padding: var(--padding-small);*/
-            /*        transition: var(--transition);*/
-            /**/
-            /*        .icon {*/
-            /*            display: flex;*/
-            /*            align-items: center;*/
-            /*            justify-content: center;*/
-            /*            padding: var(--padding-small);*/
-            /**/
-            /*            span {*/
-            /*                font-size: 2rem;*/
-            /*            }*/
-            /*        }*/
-            /**/
-            /*        .input {*/
-            /*            height: 100%;*/
-            /*            width: 100%;*/
-            /*            background-color: black;*/
-            /*            border: none;*/
-            /*            color: white;*/
-            /*            font-size: 1rem;*/
-            /*            padding: var(--padding-average);*/
-            /*            outline: none;*/
-            /*        }*/
-            /**/
-            /*        .button {*/
-            /*            border: 2px solid transparent;*/
-            /*            padding: 0;*/
-            /*            display: flex;*/
-            /*            align-items: center;*/
-            /*            justify-content: center;*/
-            /*        }*/
-            /*    }*/
-            /**/
-            /*    .icon-and-input:has(input:focus-visible),*/
-            /*    .icon-and-input:hover {*/
-            /*        border: var(--border-hovered);*/
-            /*    }*/
-            /**/
-            /*    .icon.show-password-icon {*/
-            /*        button {*/
-            /*            background-color: transparent;*/
-            /**/
-            /*            span {*/
-            /*                color: white;*/
-            /*            }*/
-            /*        }*/
-            /*    }*/
-            /*}*/
             .registered-message {
                 background-color: var(--color-green-dimmed);
                 border: var(--border);
@@ -124,6 +58,42 @@
 
                 a {
                     color: #ffffff;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .login {
+        .content {
+            .login-form {
+                border: none;
+                padding: var(--padding-big);
+                justify-content: center;
+                gap: var(--gap-big);
+
+                .button {
+                    flex: initial;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .login {
+        .content {
+            .login-form {
+                width: 100%;
+                height: 100%;
+                border: none;
+                padding: var(--padding-big);
+                justify-content: center;
+                gap: var(--gap-big);
+
+                .button {
+                    flex: initial;
                 }
             }
         }

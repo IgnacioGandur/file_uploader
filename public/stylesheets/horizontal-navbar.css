@@ -1,3 +1,7 @@
+.mobile-horizontal-navbar {
+    display: none;
+}
+
 .horizontal-navbar {
     display: flex;
     justify-content: space-between;
@@ -43,5 +47,50 @@
         .username {
             font-weight: 900;
         }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .mobile-horizontal-navbar {
+        background-color: black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--padding-average);
+        border-bottom: 1px solid var(--color-white-dimmed);
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 50;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--gap-small);
+
+            img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        .toggle-mobile-navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            border: var(--border);
+            border-radius: var(--button-border-radius);
+
+            span {
+                font-size: 2.5rem;
+                color: white;
+                font-weight: 900;
+            }
+        }
+    }
+
+    .horizontal-navbar {
+        display: none;
     }
 }
