@@ -3,7 +3,7 @@ import "dotenv/config";
 // Modules
 import express from "express";
 import path from "path";
-import router from "./routes/router.js";
+import router from "../routes/router.js";
 import session from "express-session";
 import passport from "passport";
 import { PrismaSessionStore } from "@quixo3/prisma-session-store";
@@ -14,8 +14,8 @@ const app = express();
 
 // Config
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-app.use(express.static(path.join(__dirname, "public")));
+app.set("views", path.join(__dirname, "..", "views"));
+app.use(express.static(path.join(__dirname, "..", "public")));
 app.use(express.urlencoded({ extended: true }));
 
 // Sessions
@@ -37,11 +37,13 @@ app.use(
 
 app.use(passport.session());
 
-import("./middleware/passport/passport.js");
-import("./cloudinary/cloudinary.js");
+import("../middleware/passport/passport.js");
+import("../cloudinary/cloudinary.js");
 
 app.use(router);
 
-app.listen(3000, () => {
+app.listen(8080, () => {
     console.log("Listening on http://localhost:8080/");
 });
+
+export default app;
