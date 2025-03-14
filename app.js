@@ -42,6 +42,6 @@ import("./cloudinary/cloudinary.js");
 
 app.use(router);
 
-app.listen(8080, () => {
+app.listen(3000, () => {
     console.log("Listening on http://localhost:8080/");
 });
