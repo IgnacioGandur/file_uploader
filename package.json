@@ -1,41 +1,42 @@
 {
-  "name": "file_uploader",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "dev": "nodemon app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/IgnacioGandur/file_uploader.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "bugs": {
-    "url": "https://github.com/IgnacioGandur/file_uploader/issues"
-  },
-  "homepage": "https://github.com/IgnacioGandur/file_uploader#readme",
-  "dependencies": {
-    "@prisma/client": "^6.4.0",
-    "@quixo3/prisma-session-store": "^3.1.13",
-    "bcryptjs": "^2.4.3",
-    "cloudinary": "^2.5.1",
-    "date-fns": "^4.1.0",
-    "dotenv": "^16.4.7",
-    "ejs": "^3.1.10",
-    "express": "^4.21.2",
-    "express-session": "^1.18.1",
-    "express-validator": "^7.2.1",
-    "multer": "^1.4.5-lts.1",
-    "passport": "^0.7.0",
-    "passport-local": "^1.0.0",
-    "vercel": "^25.2.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.9",
-    "prisma": "^6.4.0"
-  }
+    "name": "file_uploader",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "dev": "nodemon app.js",
+        "postinstall": "prisma generate"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/IgnacioGandur/file_uploader.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module",
+    "bugs": {
+        "url": "https://github.com/IgnacioGandur/file_uploader/issues"
+    },
+    "homepage": "https://github.com/IgnacioGandur/file_uploader#readme",
+    "dependencies": {
+        "@prisma/client": "^6.4.0",
+        "@quixo3/prisma-session-store": "^3.1.13",
+        "bcryptjs": "^2.4.3",
+        "cloudinary": "^2.5.1",
+        "date-fns": "^4.1.0",
+        "dotenv": "^16.4.7",
+        "ejs": "^3.1.10",
+        "express": "^4.21.2",
+        "express-session": "^1.18.1",
+        "express-validator": "^7.2.1",
+        "multer": "^1.4.5-lts.1",
+        "passport": "^0.7.0",
+        "passport-local": "^1.0.0",
+        "vercel": "^25.2.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.9",
+        "prisma": "^6.4.0"
+    }
 }
