@@ -1,28 +1,29 @@
 import { v2 as cloudinary } from "cloudinary";
+import createFileUri from "../utilities/createFileUri.js";
 
 const cloudinaryInteractions = {
     createUserFolder: (username) => {
         cloudinary.api.create_folder(username);
     },
 
-    uploadFile: (fileBuffer, public_id, folder) => {
-        const options = {
-            public_id: public_id,
-            folder: folder,
-            resource_type: "raw",
-        };
+    uploadFile: async (username, fileBuffer, fileName, fileMimetype) => {
+        try {
+            const fileUri = createFileUri(fileBuffer, fileMimetype);
+            const options = {
+                public_id: fileName,
+                folder: username,
+                resource_type: "raw",
+            };
 
-        return new Promise((resolve, reject) => {
-            cloudinary.uploader
-                .upload_stream(options, (error, result) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        resolve(result);
-                    }
-                })
-                .end(fileBuffer);
-        });
+            const result = await cloudinary.uploader.upload(fileUri, options);
+
+            return result;
+        } catch (error) {
+            console.error("Cloudinary error:", error.message);
+            throw new Error(
+                "Something went wrong when trying to upload file to Cluodinary.",
+            );
+        }
     },
 
     updateFilename: async (from_public_id, to_public_id) => {
@@ -40,7 +41,7 @@ const cloudinaryInteractions = {
 
             return result;
         } catch (error) {
-            console.error(error.message);
+            console.error("Cloudinary error:", error.message);
             throw new Error(
                 "Something went wrong when trying to update a file in Cloudinary.",
             );

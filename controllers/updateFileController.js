@@ -14,10 +14,16 @@ const updateFileController = {
             updatedFilename,
         );
 
+        // const fileDetailsCloudinary =
+        //     await cloudinaryInteractions.updateFilename(
+        //         cloudinary_public_id,
+        //         new_public_id,
+        //     );
+
         const fileDetailsCloudinary =
             await cloudinaryInteractions.updateFilename(
                 cloudinary_public_id,
-                new_public_id,
+                updatedFilename,
             );
 
         await fileModel.updateFile(
