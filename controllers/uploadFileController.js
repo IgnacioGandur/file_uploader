@@ -10,14 +10,7 @@ const uploadFileController = {
         const fileExtension = path.extname(originalname);
         const finalFilename = !filename ? originalname.split(".")[0] : filename;
 
-        // FIX: when original filename is used, the public_id doesn't get formed like when the filename is provided.
-        const public_id = `${Date.now()}/${finalFilename}${fileExtension}`;
-
-        // const uploadResult = await cloudinaryInteractions.uploadFile(
-        //     buffer, // File buffer.
-        //     public_id, // File name in cloudinary.
-        //     username, // User folder to store the file into.
-        // );
+        const public_id = `${Date.now()}/${req.body.filename ? req.body.filename : originalname.split(".")[0]}${fileExtension}`;
 
         const uploadResult = await cloudinaryInteractions.uploadFile(
             username,
@@ -26,7 +19,7 @@ const uploadFileController = {
             mimetype,
         );
 
-        const prismaResult = await fileModel.createFile(
+        await fileModel.createFile(
             finalFilename,
             fileExtension,
             mimetype,
