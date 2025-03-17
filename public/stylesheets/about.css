@@ -136,6 +136,26 @@
             padding: var(--padding-big);
             align-items: center;
         }
+
+        .section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap-small);
+            padding: var(--padding-big);
+
+            .details {
+                display: flex;
+                flex-direction: column;
+                gap: var(--gap-small);
+                padding: var(--padding-big);
+            }
+
+            p {
+                a {
+                    color: white;
+                }
+            }
+        }
     }
 }
 
