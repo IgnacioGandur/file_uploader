@@ -24,7 +24,7 @@
     --font-size-small: 1rem;
     --font-size-medium: 1.5rem;
     --font-size-big: 2rem;
-    --border-transparent: 1px solid transparent;
+    --border-transparent: 2px solid transparent;
     --border: 2px solid var(--color-white-dimmed);
     --border-hovered: 2px solid var(--color-main);
     --padding-small: 0.3em;

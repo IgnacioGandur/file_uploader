@@ -90,7 +90,8 @@
 
 .button:hover,
 .button:focus-visible {
-    border: var(--border-hovered) !important;
+    /*border: var(--border-hovered) !important;*/
+    border: var(--border-hovered);
 }
 
 @media screen and (max-width: 1000px) {
